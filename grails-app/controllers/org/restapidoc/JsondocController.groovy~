@@ -1,0 +1,30 @@
+package org.restapidoc.sample
+
+import grails.converters.JSON
+
+class AuthorController {
+
+    def show() {
+        def author = Author.read(params.id)
+        if (!author) {
+			response.status = 404
+            render "Not Found!"
+        } else {
+            render (author as JSON).toString()
+        }
+    }
+
+    def list() {
+        render (Author.list([max:params.max]) as JSON).toString()
+    }
+
+    def save() {
+        def author = new Author(params)
+        if (!author.save(flush: true)) {
+            response.status = 400
+            render author.errors.toString()
+        } else {
+            render (author as JSON).toString()
+        }
+    }
+}
