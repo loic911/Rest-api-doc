@@ -7,6 +7,7 @@ import org.restapidoc.pojo.RestApiParamDoc
 import org.restapidoc.pojo.RestApiResponseObjectDoc
 import org.jsondoc.core.pojo.*
 import org.restapidoc.pojo.RestApiMethodDoc
+import org.restapidoc.pojo.RestApiVerb
 
 /**
  * Created by stevben on 16/12/13.
@@ -91,13 +92,13 @@ class JSONUtils {
             returnArray['jsondocId'] = it.jsondocId
             returnArray['path'] = it.path
             returnArray['description'] = it.description
-            if (it.verb == ApiVerb.GET)
+            if (it.restVerb == RestApiVerb.GET)
                 returnArray['verb'] = "GET"
-            if (it.verb == ApiVerb.PUT)
+            if (it.restVerb == RestApiVerb.PUT)
                 returnArray['verb'] = "PUT"
-            if (it.verb == ApiVerb.POST)
+            if (it.restVerb == RestApiVerb.POST)
                 returnArray['verb'] = "POST"
-            if (it.verb == ApiVerb.DELETE)
+            if (it.restVerb == RestApiVerb.DELETE)
                 returnArray['verb'] = "DELETE"
             returnArray['produces'] = it.produces
             returnArray['consumes'] = it.consumes

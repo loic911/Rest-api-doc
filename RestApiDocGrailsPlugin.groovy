@@ -9,32 +9,34 @@ class RestApiDocGrailsPlugin {
     ]
 
     // TODO Fill in these fields
-    def title = "Rest Api Doc Plugin" // Headline display name of the plugin
-    def author = "Your name"
-    def authorEmail = ""
+    def title = "RestApiDoc Plugin" // Headline display name of the plugin
+    def author = "Loïc Rollus"
+    def authorEmail = "loicrollus@gmail.com"
     def description = '''\
-Brief summary/description of the plugin.
+The RestApiDoc plugin allows to document your Grails Rest API. Thanks to some Annotations (@), you will be ready to build a full API report (with a playground to perform test request). The plugin is based on jsondoc.
+
+This plugin allows you to document methods (description, HTTP path/verb, parameters, response type...) and resources (description, all fields,...).
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/rest-api-doc"
+    def documentation = "http://loic911.github.io/restapidoc/"
 
     // Extra (optional) plugin metadata
 
     // License: one of 'APACHE', 'GPL2', 'GPL3'
-//    def license = "APACHE"
+    def license = "APACHE"
 
     // Details of company behind the plugin (if there is one)
 //    def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
 
     // Any additional developers beyond the author specified above.
-//    def developers = [ [ name: "Joe Bloggs", email: "joe@bloggs.net" ]]
+    def developers = [ [ name: "Benjamin Stevens", email: "b.stevens@ulg.ac.be" ]]
 
     // Location of the plugin's issue tracker.
 //    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
 
     // Online location of the plugin's browseable source code.
-//    def scm = [ url: "http://svn.codehaus.org/grails-plugins/" ]
+    def scm = [ url: "https://github.com/loic911/restapidoc" ]
 
     def doWithWebDescriptor = { xml ->
         // TODO Implement additions to web.xml (optional), this event occurs before

@@ -22,6 +22,7 @@ import org.jsondoc.core.pojo.ApiErrorDoc
 import org.jsondoc.core.pojo.ApiParamType
 import org.jsondoc.core.util.JSONDocUtils
 import org.restapidoc.pojo.RestApiMethodDoc
+import org.restapidoc.pojo.RestApiVerb
 
 import java.beans.Introspector
 import java.lang.reflect.Method
@@ -119,10 +120,6 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                 }
             }
         }
-
-
-
-
         return pojoDocs;
     }
 
@@ -141,18 +138,19 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                 log.info "\t\tProcess method ${method} ..."
                 //Retrieve the path/verb to go to this method
                 MappingRulesEntry rule = rules.getRule(controller.simpleName,method.name)
-                String verb = "GET"
-                String path = "Undefined"
-                if(rule) {
-                    verb = rule.verb
+                String verb = method.getAnnotation(RestApiMethod.class).verb().name()
+                String path
+
+                def annotation = method.getAnnotation(RestApiMethod.class)
+                if(!annotation.path().equals("Undefined")) {
+                    //path is defined in the annotation
+                    path = method.getAnnotation(RestApiMethod.class).path()
+                } else if(rule){
+                    //path is defined in the urlmapping
                     path = rule.path
+
                 } else {
-                    //if no explicit url mapping rules, take dynamic rule
-                    VERB_PER_METHOD_PREFIX.each {
-                        if(method.name.startsWith(it.key)) {
-                            verb = it.value
-                        }
-                    }
+                    //nothing is defined
                     String controllerName = controller.simpleName
                     if(controllerName.endsWith(CONTROLLER_SUFFIX)) {
                         controllerName = controllerName.substring(0,controllerName.size()-CONTROLLER_SUFFIX.size())
@@ -169,8 +167,24 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                     println "actionWithPathParam=$actionWithPathParam"
 
                     path = "/"+controllerName + actionWithPathParam + ".${DEFAULT_FORMAT}"
-
                 }
+
+                if(annotation.verb()!=RestApiVerb.NULL) {
+                    //verb is defined in the annotation
+                    verb = method.getAnnotation(RestApiMethod.class).verb().name().toUpperCase()
+                } else if(rule){
+                    //verb is defined in the urlmapping
+                    verb = rule.verb
+
+                } else {
+                    //if no explicit url mapping rules, take dynamic rule
+                    VERB_PER_METHOD_PREFIX.each {
+                        if(method.name.startsWith(it.key)) {
+                            verb = it.value
+                        }
+                    }
+                }
+
 
                 RestApiMethodDoc apiMethodDoc = RestApiMethodDoc.buildFromAnnotation(method.getAnnotation(RestApiMethod.class),path,verb,DEFAULT_TYPE);
 

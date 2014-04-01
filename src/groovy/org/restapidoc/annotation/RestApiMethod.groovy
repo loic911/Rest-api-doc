@@ -1,6 +1,6 @@
 package org.restapidoc.annotation
 
-import org.jsondoc.core.pojo.ApiVerb
+import org.restapidoc.pojo.RestApiVerb
 
 import java.lang.annotation.*
 
@@ -28,10 +28,10 @@ public @interface RestApiMethod {
 
     /**
      * The request verb (or method), to be filled with an ApiVerb value (GET, POST, PUT, DELETE)
-     * @see ApiVerb
+     * @see RestApiVerb
      * @return
      */
-    public ApiVerb verb() default ApiVerb.GET;
+    public RestApiVerb verb() default RestApiVerb.NULL;
 
     /**
      * An array of strings representing media types produced by the method, like application/json, application/xml, ...

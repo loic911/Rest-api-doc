@@ -2,7 +2,6 @@ package org.restapidoc.pojo
 
 import org.restapidoc.annotation.RestApiMethod
 import org.jsondoc.core.pojo.ApiMethodDoc
-import org.jsondoc.core.pojo.ApiVerb
 
 /**
  * RestApiMethodDoc must be used instead of ApiMethodDoc to use a light rest api doc
@@ -10,6 +9,8 @@ import org.jsondoc.core.pojo.ApiVerb
  *
  */
 public class RestApiMethodDoc extends ApiMethodDoc{
+
+    private RestApiVerb restVerb
 
     public final static String UNDEFINED = "Undefined"
 
@@ -35,7 +36,7 @@ public class RestApiMethodDoc extends ApiMethodDoc{
         def prod = Arrays.asList(annotation.produces())
         def cons = Arrays.asList(annotation.consumes())
 
-        if(cons.isEmpty() && (objVerb==ApiVerb.POST || objVerb==ApiVerb.PUT)) {
+        if(cons.isEmpty() && (objVerb==RestApiVerb.POST || objVerb==RestApiVerb.PUT)) {
             //if no cons definition and POST/PUT method => auto put json
             cons = [defaultCons]
         }
@@ -55,7 +56,7 @@ public class RestApiMethodDoc extends ApiMethodDoc{
 
         apiMethodDoc.setPath(newPath);
         apiMethodDoc.setDescription(annotation.description());
-        apiMethodDoc.setVerb(objVerb);
+        apiMethodDoc.restVerb = objVerb;
         apiMethodDoc.setProduces(prod);
         apiMethodDoc.setConsumes(cons);
 
@@ -63,8 +64,8 @@ public class RestApiMethodDoc extends ApiMethodDoc{
         return apiMethodDoc;
     }
 
-    public static ApiVerb retrieveVerb(String verb) {
-        return ApiVerb.valueOf(verb.toUpperCase())
+    public static RestApiVerb retrieveVerb(String verb) {
+        return RestApiVerb.valueOf(verb.toUpperCase())
     }
 
 }
