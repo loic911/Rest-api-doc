@@ -15,7 +15,7 @@ class RestApiDocGrailsPlugin {
     def description = '''\
 The RestApiDoc plugin allows to document your Grails Rest API. Thanks to some Annotations (@), you will be ready to build a full API report (with a playground to perform test request). The plugin is based on jsondoc.
 
-This plugin allows you to document methods (description, HTTP path/verb, parameters, response type...) and resources (description, all fields,...).
+This plugin allows you to document methods (description, HTTP path/verb, parameters, response type...) and resources (description, all fields,...). It does a lot of stuff for you (computing path/verb for the method, retrieving field type,...)
 '''
 
     // URL to the plugin's documentation

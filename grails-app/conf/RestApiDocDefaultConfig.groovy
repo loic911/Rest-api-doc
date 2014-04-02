@@ -19,27 +19,13 @@ grails {
 
             defaultObjectFields = [ ]
 
-            defaultErrorAll = [
-                    "400": "Bad Request: missing parameters or bad message format",
-                    "401": "Unauthorized: must be auth",
-                    "403": "Forbidden: role error",
-                    "404": "Object not found"
-            ]
+            defaultErrorAll = []
 
-            defaultErrorGet = [
-                    "400": "Bad Request: missing parameters or bad message format",
-                    "401": "Unauthorized: must be auth",
-                    "403": "Forbidden: role error",
-                    "404": "Object not found"
-            ]
+            defaultErrorGet = []
 
-            defaultErrorPost = [
-                    "409": "Object already exist"
-            ]
+            defaultErrorPost = []
 
-            defaultErrorPut = [
-                    "409": "Object already exist"
-            ]
+            defaultErrorPut = []
 
             defaultErrorDelete = [:]
 
@@ -59,8 +45,11 @@ grails {
                     "show" : "show/{id}",
                     "list" : "list",
                     "add" : "add",
+                    "save" : "save",
                     "update" : "udpate/{id}",
-                    "delete" : "delete/{id}"
+                    "edit" : "edit/{id}",
+                    "delete" : "delete/{id}",
+                    "remove" : "delete/{id}",
             ]
 
             grailsDomainDefaultType = null //= null will appear 'domain' type

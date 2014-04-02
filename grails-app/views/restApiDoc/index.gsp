@@ -644,6 +644,7 @@
                                         contentType: $("#consumes input:checked").val(),
                                         success : function(data) {
                                             printResponse(data, res, this.url);
+
                                         },
                                         error: function(data) {
                                             printResponse(data, res, this.url);
@@ -656,7 +657,9 @@
                         });
                     });
                 });
-
+                var allLink = $("#apidiv").find("ul.nav").find("a");
+                var lastLink = allLink[allLink.length-1];
+                lastLink.click();
                 var objects = Handlebars.compile($("#objects").html());
                 var objectsHTML = objects(data);
                 $("#objectdiv").html(objectsHTML);

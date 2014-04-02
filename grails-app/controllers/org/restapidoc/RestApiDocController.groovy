@@ -23,7 +23,6 @@ class RestApiDocController {
 
         BuildPathMap buildPathMap = new BuildPathMap()
         MappingRules rules = buildPathMap.build(grailsApplication)
-        render rules.rules
 
         def classCustom = null
         if(CUSTOM_CLASS_NAME) {
@@ -36,6 +35,12 @@ class RestApiDocController {
         def result = APIUtils.buildApiRegistry(grailsApplication,classCustom)
         File docFile = new File(grailsApplication.mergedConfig.grails.plugins.restapidoc.outputFile)
         docFile.write((result as JSON).toString(true))
+
+        render "JSON file has been created!<br/><br/>"
+        render "Go to http://.../restApiDoc/?doc_url=http://.../restApiDoc/api#<br/><br/>"
+        render "Example: http://localhost:8080/RestApiDoc-example/restApiDoc/?doc_url=http://localhost:8080/RestApiDoc-example/restApiDoc/api#<br/><br/>"
+
+
     }
 
 }
