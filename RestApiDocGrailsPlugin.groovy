@@ -33,7 +33,7 @@ This plugin allows you to document methods (description, HTTP path/verb, paramet
     def developers = [ [ name: "Benjamin Stevens", email: "b.stevens@ulg.ac.be" ]]
 
     // Location of the plugin's issue tracker.
-//    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
+    def issueManagement = [ system: "GITHUB", url: "https://github.com/loic911/restapidoc/issues" ]
 
     // Online location of the plugin's browseable source code.
     def scm = [ url: "https://github.com/loic911/restapidoc" ]
