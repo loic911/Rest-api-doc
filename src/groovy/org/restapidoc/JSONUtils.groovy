@@ -15,6 +15,16 @@ import org.restapidoc.pojo.RestApiVerb
 class JSONUtils {
 
     static def registerMarshallers () {
+
+        JSON.registerObjectMarshaller(ApiObjectDoc) {
+            def returnArray = [:]
+            println "ApiObjectDoc"
+            returnArray['jsondocId'] = it.jsondocId
+            returnArray['description'] = it.description
+            returnArray['name'] = it.name
+            returnArray['fields'] = it.fields
+            return returnArray
+        }
         JSON.registerObjectMarshaller(RestApiObjectDoc) {
             def returnArray = [:]
             returnArray['jsondocId'] = it.jsondocId

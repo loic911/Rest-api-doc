@@ -23,7 +23,7 @@ import java.lang.reflect.Method
 @Log
 public class RestApiObjectDoc extends ApiObjectDoc{
 
-    public RestApiObjectDoc(String name, String description, List<ApiObjectFieldDoc> fields) {
+    public RestApiObjectDoc(String name, String description, List<RestApiObjectFieldDoc> fields) {
         super(name,description,fields);
     }
 
@@ -31,8 +31,8 @@ public class RestApiObjectDoc extends ApiObjectDoc{
      * Build an object Doc from a domain annotation
      */
     @SuppressWarnings("rawtypes")
-    public static RestApiObjectDoc buildFromAnnotation(RestApiObject annotation, Class clazz,def grailsDomainDefaultType,def defaultObjectFields) {
-        buildFromAnnotation(annotation.name(),annotation.description(),clazz,grailsDomainDefaultType, defaultObjectFields,false)
+    public static RestApiObjectDoc buildFromAnnotation(RestApiObject annotation, boolean isDomain, Class clazz,def grailsDomainDefaultType,def defaultObjectFields) {
+        buildFromAnnotation(annotation.name(),annotation.description(),isDomain,clazz,grailsDomainDefaultType, defaultObjectFields,false)
     }
 
     /**
@@ -40,25 +40,26 @@ public class RestApiObjectDoc extends ApiObjectDoc{
      * @param custom Not a real grails domain
      */
     @SuppressWarnings("rawtypes")
-    public static RestApiObjectDoc buildFromAnnotation(String name, String description, Class clazz, def grailsDomainDefaultType,def defaultObjectFields,boolean custom) {
+    public static RestApiObjectDoc buildFromAnnotation(String name, String description, boolean isDomain, Class clazz, def grailsDomainDefaultType,def defaultObjectFields,boolean custom) {
         List<ApiObjectFieldDoc> fieldDocs = new ArrayList<ApiObjectFieldDoc>();
 
         //map that store: key=json field name and value = [type: field class, description: field desc,...]
         Map<String,Map<String,String>> annotationsMap = new TreeMap<String,Map<String,String>>()
         log.info "\tProcess domain ${name} ..."
-        def domain = Holders.getGrailsApplication().getDomainClasses().find {
-            it.shortName.equals(clazz.simpleName)
-        }
+//        def domain = Holders.getGrailsApplication().getDomainClasses().find {
+//            it.shortName.equals(clazz.simpleName)
+//        }
 
         //build map field (with super class too)
-        if(domain) {
+        if(isDomain) {
             //its a grails domain
 
             //analyse all fields for each classes and superclass
-            Class classToProcess = domain.clazz
+            Class classToProcess = clazz
             while(classToProcess.simpleName!="Object") {
+                log.info "classToProcess=$classToProcess"
                 //move from sub class to parent class while parent class is not the Java Object class
-                fillAnnotationMap(classToProcess,annotationsMap,null,grailsDomainDefaultType,defaultObjectFields)
+                fillAnnotationMap(classToProcess,annotationsMap,null,grailsDomainDefaultType,defaultObjectFields,isDomain)
                 classToProcess = classToProcess.superclass
             }
 
@@ -105,7 +106,7 @@ public class RestApiObjectDoc extends ApiObjectDoc{
 
         } else {
             //its custom response doc, don't use json
-            fillAnnotationMap(clazz,annotationsMap,name,grailsDomainDefaultType,defaultObjectFields)
+            fillAnnotationMap(clazz,annotationsMap,name,grailsDomainDefaultType,defaultObjectFields,isDomain)
         }
 
         //not in json but defined in project domain
@@ -131,7 +132,7 @@ public class RestApiObjectDoc extends ApiObjectDoc{
     }
 
     //take class and fill the map with field metadata (from annotation)
-    static void fillAnnotationMap(def domainClass, def annotationsMap,String fieldname, def grailsDomainDefaultType, def defaultObjectFields) {
+    static void fillAnnotationMap(def domainClass, def annotationsMap,String fieldname, def grailsDomainDefaultType, def defaultObjectFields,boolean isGrailsDomain) {
 
 
         //add fiels from class
@@ -141,13 +142,13 @@ public class RestApiObjectDoc extends ApiObjectDoc{
                     //if fieldname!=null => custom field from CustomResponseDoc, so skip this annotation
                     if(field.isAnnotationPresent(RestApiObjectField.class)) {
                         def annotation = field.getAnnotation(RestApiObjectField.class)
-                        addAnnotationToMap(annotationsMap,field,annotation,grailsDomainDefaultType)
+                        addAnnotationToMap(annotationsMap,field,annotation,grailsDomainDefaultType,isGrailsDomain)
                     }
                 }
                 if(field.isAnnotationPresent(RestApiObjectFields.class)) {
                     def annotation = field.getAnnotation(RestApiObjectFields.class)
                     annotation.params().each { apiObjectFieldsLight ->
-                        addAnnotationToMap(annotationsMap,field,apiObjectFieldsLight,grailsDomainDefaultType)
+                        addAnnotationToMap(annotationsMap,field,apiObjectFieldsLight,grailsDomainDefaultType,isGrailsDomain)
                     }
                 }
             }
@@ -160,13 +161,13 @@ public class RestApiObjectDoc extends ApiObjectDoc{
     }
 
     //add field metadata to a map. Use field data if annotation data is missing
-    static def addAnnotationToMap(Map<String,Map<String,String>> map, Field field, RestApiObjectField annotation, def grailsDomainDefaultType) {
+    static def addAnnotationToMap(Map<String,Map<String,String>> map, Field field, RestApiObjectField annotation, def grailsDomainDefaultType, boolean isGrailsDomain) {
         def annotationData = [:]
 
         String[] typeChecks = RestApiObjectFieldDoc.getFieldObject(field);
         if(annotation.allowedType().equals("")) {
             //if field is domain class (book.author) => author_id is a long
-            if(isGrailsDomain(field.type.name)) {
+            if(isGrailsDomain) {
                 if(grailsDomainDefaultType) {
                     annotationData['type'] = grailsDomainDefaultType
                 } else {
@@ -215,13 +216,5 @@ public class RestApiObjectDoc extends ApiObjectDoc{
         }
         return "Undefined"
     }
-
-    public static boolean isGrailsDomain(String fullName) {
-        def domain = Holders.getGrailsApplication().getDomainClasses().find {
-            it.fullName.equals(fullName)
-        }
-        return domain != null
-    }
-
 
 }

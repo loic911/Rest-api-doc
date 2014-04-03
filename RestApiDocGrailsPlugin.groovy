@@ -5,8 +5,15 @@ class RestApiDocGrailsPlugin {
     def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-        "grails-app/views/error.gsp"
+        "grails-app/views/error.gsp",
+        "grails-app/domain/org/restapidoc/test/TestObject.groovy",
+        "grails-app/controllers/org/restapidoc/test/TestController.groovy",
+        "grails-app/controllers/org/restapidoc/test/AnotherTestController.groovy"
     ]
+
+
+
+
 
     // TODO Fill in these fields
     def title = "RestApiDoc Plugin" // Headline display name of the plugin

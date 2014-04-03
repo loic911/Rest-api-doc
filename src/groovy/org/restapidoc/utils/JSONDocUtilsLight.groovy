@@ -103,7 +103,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         Set<RestApiObjectDoc> pojoDocs = new TreeSet<RestApiObjectDoc>();
         for (Class<?> pojo : classes) {
             RestApiObject annotation = pojo.getAnnotation(RestApiObject.class);
-            RestApiObjectDoc pojoDoc = RestApiObjectDoc.buildFromAnnotation(annotation, pojo,GRAILS_DOMAIN_DEFAULT_TYPE,DOMAIN_OBJECT_FIELDS);
+            RestApiObjectDoc pojoDoc = RestApiObjectDoc.buildFromAnnotation(annotation, true,pojo,GRAILS_DOMAIN_DEFAULT_TYPE,DOMAIN_OBJECT_FIELDS);
             if(annotation.show()) {
                 pojoDocs.add(pojoDoc);
             }
@@ -115,7 +115,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                 println "field=$field"
                 if(field.isAnnotationPresent(RestApiObjectField.class)) {
                     def annotation = field.getAnnotation(RestApiObjectField.class)
-                    RestApiObjectDoc pojoDoc = RestApiObjectDoc.buildFromAnnotation(field.name, annotation.description(),customResponseDoc, GRAILS_DOMAIN_DEFAULT_TYPE,DOMAIN_OBJECT_FIELDS,true);
+                    RestApiObjectDoc pojoDoc = RestApiObjectDoc.buildFromAnnotation(field.name,annotation.description(),false,customResponseDoc, GRAILS_DOMAIN_DEFAULT_TYPE,DOMAIN_OBJECT_FIELDS,true);
                     pojoDocs.add(pojoDoc);
                 }
             }
@@ -283,7 +283,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         return false;
     }
 
-    private String getControllerDomainName(Class controller) {
+    public String getControllerDomainName(Class controller) {
         try {
             Method m = controller.getDeclaredMethod("currentDomainName", Object)
             //if a method currentDomainName exist in controller, get its String
@@ -313,7 +313,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                 result = result + " " + car.toLowerCase()
             }
         }
-        return result
+        return result.trim()
     }
 
 

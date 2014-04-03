@@ -36,7 +36,7 @@ class BuildPathMap extends AnsiConsoleUrlMappingsRenderer{
 
     }
 
-    MappingRules createUrlMappingMap(List<UrlMapping> urlMappings,def grailsApplication) {
+    private MappingRules createUrlMappingMap(List<UrlMapping> urlMappings,def grailsApplication) {
 
         MappingRules rules = new MappingRules()
 
