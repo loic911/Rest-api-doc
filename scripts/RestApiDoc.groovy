@@ -16,13 +16,13 @@ target(restApiDoc: "Build Rest Api Doc in a JSON file") {
 
        jsonUtils.registerMarshallers ()
 
-        def result = apiUtils.buildApiRegistry(grailsApp,null)
+        def result = apiUtils.buildApiRegistry(grailsApp)
 
         File docFile = new File(grailsApp.mergedConfig.grails.plugins.restapidoc.outputFile)
 
         println("Write in file " + docFile.absolutePath+"...")
 
-        docFile.write((result as JSON).toString())
+        docFile.write((result as JSON).toString(true))
     } catch(Exception e) {
         println e
         e.printStackTrace()

@@ -12,10 +12,20 @@ import org.restapidoc.utils.JSONDocUtilsLight
 @Log
 class APIUtils {
 
-    static def buildApiRegistry(grailsApplication,customDoc) {
+    static def buildApiRegistry(grailsApplication) {
 
         String VERSION = grailsApplication.mergedConfig.grails.plugins.restapidoc.docVersion
         String BASEPATH = grailsApplication.mergedConfig.grails.plugins.restapidoc.basePath
+
+        String CUSTOM_CLASS_NAME = grailsApplication.mergedConfig.grails.plugins.restapidoc.customClassName
+        def customDoc = null
+        if(CUSTOM_CLASS_NAME) {
+            ClassLoader classLoader = APIUtils.getClassLoader();
+            println "Custom doc class loading=${CUSTOM_CLASS_NAME}"
+            customDoc = classLoader.loadClass(CUSTOM_CLASS_NAME)
+        }
+
+
 
         JSONDocUtilsLight builder = new JSONDocUtilsLight(grailsApplication)
 
