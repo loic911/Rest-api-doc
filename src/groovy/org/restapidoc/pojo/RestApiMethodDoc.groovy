@@ -14,6 +14,8 @@ public class RestApiMethodDoc extends ApiMethodDoc{
 
     public final static String UNDEFINED = "Undefined"
 
+    String methodName = null
+
     /**
      * Build a method doc from annotation
      * @param annotation Method annotation

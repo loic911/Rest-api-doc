@@ -155,8 +155,10 @@ public class RestApiObjectDoc extends ApiObjectDoc{
         }
 
         //add default fields
-        defaultObjectFields.each {
-            annotationsMap.put(it.name,it)
+        if(isGrailsDomain) {
+            defaultObjectFields.each {
+                annotationsMap.put(it.name,it)
+            }
         }
     }
 

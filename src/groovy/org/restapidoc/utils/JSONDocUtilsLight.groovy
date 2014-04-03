@@ -136,6 +136,8 @@ public class JSONDocUtilsLight extends JSONDocUtils {
 
             if(method.isAnnotationPresent(RestApiMethod.class)) {
                 log.info "\t\tProcess method ${method} ..."
+
+
                 //Retrieve the path/verb to go to this method
                 MappingRulesEntry rule = rules.getRule(controller.simpleName,method.name)
                 String verb = method.getAnnotation(RestApiMethod.class).verb().name()
@@ -187,6 +189,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
 
 
                 RestApiMethodDoc apiMethodDoc = RestApiMethodDoc.buildFromAnnotation(method.getAnnotation(RestApiMethod.class),path,verb,DEFAULT_TYPE);
+                apiMethodDoc.methodName = method.name
 
                 if(method.isAnnotationPresent(RestApiHeaders.class)) {
                     apiMethodDoc.setHeaders(RestApiMethodDoc.buildFromAnnotation(method.getAnnotation(RestApiHeaders.class)));

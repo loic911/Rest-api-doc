@@ -118,6 +118,7 @@ class JSONUtils {
             returnArray['bodyobject'] = it.bodyobject
             returnArray['response'] = it.response
             returnArray['apierrors'] = it.apierrors
+            returnArray['methodName'] = it.methodName
             return returnArray
         }
 
