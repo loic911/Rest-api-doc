@@ -10,7 +10,6 @@ class RestApiDocBootStrap {
 
 
     def init = { servletContext ->
-        println "Init bootstrap restapidoc!"
         JSONUtils.registerMarshallers ()
     }
 }

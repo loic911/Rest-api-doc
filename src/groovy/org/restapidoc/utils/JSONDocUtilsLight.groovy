@@ -319,5 +319,10 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         return result.trim()
     }
 
-
+    static String firstNameUpper(String str) {
+        if(str && str.size()>0) {
+            return str.substring(0, 1).toUpperCase()+str.substring(1);
+        }
+        return str
+    }
 }
