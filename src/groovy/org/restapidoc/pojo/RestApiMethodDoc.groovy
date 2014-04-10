@@ -69,5 +69,4 @@ public class RestApiMethodDoc extends ApiMethodDoc{
     public static RestApiVerb retrieveVerb(String verb) {
         return RestApiVerb.valueOf(verb.toUpperCase())
     }
-
 }

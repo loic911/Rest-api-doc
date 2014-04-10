@@ -11,14 +11,15 @@ import org.restapidoc.annotation.RestApiObject
 import org.restapidoc.annotation.RestApiObjectField
 import org.restapidoc.annotation.RestApiParams
 import org.restapidoc.annotation.RestApiResponseObject
+import org.restapidoc.pojo.RestApiBodyObjectDoc
 import org.restapidoc.pojo.RestApiDoc
+import org.restapidoc.pojo.RestApiErrorDoc
 import org.restapidoc.pojo.RestApiObjectDoc
 import org.restapidoc.pojo.RestApiParamDoc
 import org.restapidoc.pojo.RestApiParamType
 import org.restapidoc.pojo.RestApiResponseObjectDoc
 import org.jsondoc.core.pojo.ApiBodyObjectDoc
 import org.jsondoc.core.pojo.ApiDoc
-import org.jsondoc.core.pojo.ApiErrorDoc
 import org.jsondoc.core.pojo.ApiParamType
 import org.jsondoc.core.util.JSONDocUtils
 import org.restapidoc.pojo.RestApiMethodDoc
@@ -220,7 +221,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                 apiMethodDoc.setQueryparameters(queryParameters.minus(null));
 
                 if(method.isAnnotationPresent(RestApiBodyObject.class)) {
-                    apiMethodDoc.setBodyobject(ApiBodyObjectDoc.buildFromAnnotation(method.getAnnotation(RestApiBodyObject.class)));
+                    apiMethodDoc.setBodyobject(RestApiBodyObjectDoc.buildFromAnnotation(method));
                 } else if(verb.equals("POST") || verb.equals("PUT")) {
                     String currentDomain = getControllerDomainName(controller)
                     apiMethodDoc.setBodyobject(new ApiBodyObjectDoc(currentDomain, "", "", "Unknow", ""));
@@ -233,40 +234,40 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                     apiMethodDoc.setResponse(new RestApiResponseObjectDoc(currentDomain, "", "", "Unknow", ""))
                 }
 
-                List<ApiErrorDoc> errors = []
+                List<RestApiErrorDoc> errors = []
                 if(method.isAnnotationPresent(RestApiErrors.class)) {
-                    errors = ApiErrorDoc.buildFromAnnotation(method.getAnnotation(RestApiErrors.class))
+                    errors = RestApiErrorDoc.buildFromAnnotation(method.getAnnotation(RestApiErrors.class))
                 }
 
                 //add default errors
                 DEFAULT_ERROR_ALL.each { code ->
                     if(!errors.find{it.code.equals(code.key)}) {
-                        errors.add(new ApiErrorDoc(code.key, code.value));
+                        errors.add(new RestApiErrorDoc(code.key, code.value));
                     }
                 }
 
                 if(verb.equals("GET")) {
                     DEFAULT_ERROR_GET.each { code ->
                         if(!errors.find{it.code.equals(code.key)}) {
-                            errors.add(new ApiErrorDoc(code.key, code.value));
+                            errors.add(new RestApiErrorDoc(code.key, code.value));
                         }
                     }
                 } else if(verb.equals("POST")) {
                     DEFAULT_ERROR_POST.each { code ->
                         if(!errors.find{it.code.equals(code.key)}) {
-                            errors.add(new ApiErrorDoc(code.key, code.value));
+                            errors.add(new RestApiErrorDoc(code.key, code.value));
                         }
                     }
                 } else if(verb.equals("PUT")) {
                     DEFAULT_ERROR_PUT.each { code ->
                         if(!errors.find{it.code.equals(code.key)}) {
-                            errors.add(new ApiErrorDoc(code.key, code.value));
+                            errors.add(new RestApiErrorDoc(code.key, code.value));
                         }
                     }
                 } else if(verb.equals("DELETE")) {
                     DEFAULT_ERROR_DELETE.each { code ->
                         if(!errors.find{it.code.equals(code.key)}) {
-                            errors.add(new ApiErrorDoc(code.key, code.value));
+                            errors.add(new RestApiErrorDoc(code.key, code.value));
                         }
                     }
                 }

@@ -1,6 +1,7 @@
 package org.restapidoc
 
 import grails.converters.JSON
+import org.restapidoc.pojo.RestApiErrorDoc
 import org.restapidoc.pojo.RestApiObjectDoc
 import org.restapidoc.pojo.RestApiObjectFieldDoc
 import org.restapidoc.pojo.RestApiParamDoc
@@ -122,7 +123,7 @@ class JSONUtils {
             return returnArray
         }
 
-        JSON.registerObjectMarshaller(ApiErrorDoc) {
+        JSON.registerObjectMarshaller(RestApiErrorDoc) {
             def returnArray = [:]
             returnArray['jsondocId'] = it.jsondocId
             returnArray['code'] = it.code

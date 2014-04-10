@@ -4,7 +4,7 @@ grails {
     plugins{
         restapidoc {
 
-            docVersion = "0.1"
+            docVersion = "0.1.1"
 
             basePath = "Fill with basePath config" //"http://localhost:8080/RestApiDoc" //app.name
 
