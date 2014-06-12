@@ -1,0 +1,16 @@
+<plugin name='rest-api-doc' version='0.1.3' grailsVersion='2.3 &gt; *'>
+  <author>Loïc Rollus</author>
+  <authorEmail>loicrollus@gmail.com</authorEmail>
+  <title>RestApiDoc Plugin</title>
+  <description>The RestApiDoc plugin allows to document your Grails Rest API. Thanks to some Annotations (@), you will be ready to build a full API report (with a playground to perform test request). The plugin is based on jsondoc.
+
+This plugin allows you to document methods (description, HTTP path/verb, parameters, response type...) and resources (description, all fields,...). It does a lot of stuff for you (computing path/verb for the method, retrieving field type,...)
+</description>
+  <documentation>http://loic911.github.io/restapidoc/</documentation>
+  <type>RestApiDocGrailsPlugin</type>
+  <resources>
+    <resource>RestApiDocBootStrap</resource>
+    <resource>RestApiDocDefaultConfig</resource>
+    <resource>org.restapidoc.RestApiDocController</resource>
+  </resources>
+</plugin>

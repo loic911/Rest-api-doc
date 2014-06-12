@@ -75,7 +75,6 @@ public class JSONDocUtilsLight extends JSONDocUtils {
      * @param classes Controllers classes
      * @return Controller method doc
      */
-    @Override
     public Set<ApiDoc> getApiDocs(Set<Class<?>> classes, def grailsApplication) {
         Set<ApiDoc> apiDocs = new TreeSet<ApiDoc>();
 
@@ -98,7 +97,6 @@ public class JSONDocUtilsLight extends JSONDocUtils {
      * @param classes Domain classes
      * @return Domain object doc
      */
-    @Override
     public Set<RestApiObjectDoc> getApiObjectDocs(Set<Class<?>> classes,def customResponseDoc) {
 
         Set<RestApiObjectDoc> pojoDocs = new TreeSet<RestApiObjectDoc>();
@@ -127,7 +125,6 @@ public class JSONDocUtilsLight extends JSONDocUtils {
     /**
      * Build method doc object for all controller methods
      */
-    @Override
     private List<RestApiMethodDoc> getApiMethodDocs(Class<?> controller, MappingRules rules) {
         log.info "\tProcess controller ${controller} ..."
         List<RestApiMethodDoc> apiMethodDocs = new ArrayList<RestApiMethodDoc>();
