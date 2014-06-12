@@ -44,9 +44,6 @@ grails.project.dependency.resolution = {
 
     plugins {
         build ":tomcat:7.0.42"
-        compile (':hibernate:3.6.10.2') {
-            excludes('hibernate-ehcache')
-        }
 
         compile ":plugin-config:0.2.0"
 
