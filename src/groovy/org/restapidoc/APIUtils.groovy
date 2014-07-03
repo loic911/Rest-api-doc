@@ -1,6 +1,5 @@
 package org.restapidoc
 
-import grails.util.Holders
 import groovy.util.logging.Log
 import org.restapidoc.annotation.RestApi
 import org.restapidoc.annotation.RestApiObject
@@ -19,7 +18,7 @@ class APIUtils {
 
         String CUSTOM_CLASS_NAME = grailsApplication.mergedConfig.grails.plugins.restapidoc.customClassName
         def customDoc = null
-        if(CUSTOM_CLASS_NAME) {
+        if (CUSTOM_CLASS_NAME) {
             ClassLoader classLoader = APIUtils.getClassLoader();
             println "Custom doc class loading=${CUSTOM_CLASS_NAME}"
             customDoc = classLoader.loadClass(CUSTOM_CLASS_NAME)
@@ -32,7 +31,7 @@ class APIUtils {
         //Retrieve all controlers (for method doc)
         log.info "Retrieve Controller..."
         Set<Class> controllersClasses = new LinkedList<Class>()
-        grailsApplication.controllerClasses.findAll {it.clazz.isAnnotationPresent(RestApi) }
+        grailsApplication.controllerClasses.findAll { it.clazz.isAnnotationPresent(RestApi) }
                 .each { controllerArtefact ->
             def controllerClass = controllerArtefact.getClazz()
             controllersClasses.add(controllerClass)
@@ -41,23 +40,23 @@ class APIUtils {
         //Retrieve all domains (for object doc)
         log.info "Retrieve Domain..."
         Set<Class<?>> objectClasses = new LinkedList<Class<?>>()
-        grailsApplication.domainClasses.findAll {it.clazz.isAnnotationPresent(RestApiObject) }.each { domainArtefact ->
+        grailsApplication.domainClasses.findAll { it.clazz.isAnnotationPresent(RestApiObject) }.each { domainArtefact ->
             def domainClass = domainArtefact.getClazz()
             objectClasses.add(domainClass)
         }
 
         //Generate doc
         def objectsDoc = builder.getApiObjectDocs(objectClasses, customDoc)
-        def controllerDoc = builder.getApiDocs(controllersClasses,grailsApplication)
+        def controllerDoc = builder.getApiDocs(controllersClasses, grailsApplication)
 
         log.info "Doc builder is finished..."
 
         //Register doc
 //        ApiRegistry.jsondoc =
-        return ["version" : VERSION,
-                 "basePath" : BASEPATH,
-                "apis" : controllerDoc,
-                "objects" : objectsDoc]
+        return ["version": VERSION,
+                "basePath": BASEPATH,
+                "apis": controllerDoc,
+                "objects": objectsDoc]
 
     }
 }

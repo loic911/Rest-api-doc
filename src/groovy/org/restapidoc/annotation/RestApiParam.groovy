@@ -10,7 +10,7 @@ import java.lang.annotation.*
  *
  */
 @Documented
-@Target(value=ElementType.ANNOTATION_TYPE)
+@Target(value = ElementType.ANNOTATION_TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RestApiParam {
 
@@ -49,7 +49,6 @@ public @interface RestApiParam {
      * @return
      */
     public RestApiParamType paramType();
-
 
     /**
      * The type of the parameter (string, integer)

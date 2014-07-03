@@ -12,7 +12,7 @@ import java.util.regex.Pattern
  *
  * Created by lrollus on 1/10/14.
  */
-class BuildPathMap extends AnsiConsoleUrlMappingsRenderer{
+class BuildPathMap extends AnsiConsoleUrlMappingsRenderer {
 
     /**
      * Build a MappingRules (map controller.action => path + verb) thanks to url mapping
@@ -23,7 +23,7 @@ class BuildPathMap extends AnsiConsoleUrlMappingsRenderer{
         def evaluator = Holders.getGrailsApplication().classLoader.loadClass("org.codehaus.groovy.grails.web.mapping.DefaultUrlMappingEvaluator").newInstance(Holders.getGrailsApplication().classLoader.loadClass('org.springframework.mock.web.MockServletContext').newInstance())
         def allMappings = []
 
-        for(m in mappings) {
+        for (m in mappings) {
             List grailsClassMappings
             if (Script.isAssignableFrom(m.getClazz())) {
                 grailsClassMappings = evaluator.evaluateMappings(m.getClazz())
@@ -32,11 +32,11 @@ class BuildPathMap extends AnsiConsoleUrlMappingsRenderer{
             }
             allMappings.addAll(grailsClassMappings)
         }
-        return createUrlMappingMap(allMappings,grailsApplication)
+        return createUrlMappingMap(allMappings, grailsApplication)
 
     }
 
-    private MappingRules createUrlMappingMap(List<UrlMapping> urlMappings,def grailsApplication) {
+    private MappingRules createUrlMappingMap(List<UrlMapping> urlMappings, def grailsApplication) {
 
         MappingRules rules = new MappingRules()
 
@@ -49,11 +49,11 @@ class BuildPathMap extends AnsiConsoleUrlMappingsRenderer{
             for (UrlMapping urlMapping in controllerUrlMappings) {
                 def urlPattern = establishUrlPattern(urlMapping, isAnsiEnabled, longestMapping)
 
-                if(urlMapping?.actionName) {
-                    if(urlMapping?.actionName instanceof String) continue
+                if (urlMapping?.actionName) {
+                    if (urlMapping?.actionName instanceof String) continue
                     urlMapping?.actionName.each { actName ->
-                        urlPattern = urlPattern.replace("\${","{") //replace ${format} with {format}
-                        rules.addRule(controller.toString(),actName.value,cleanString(urlPattern),actName.key,grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultFormat)
+                        urlPattern = urlPattern.replace("\${", "{") //replace ${format} with {format}
+                        rules.addRule(controller.toString(), actName.value, cleanString(urlPattern), actName.key, grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultFormat)
                     }
                 }
             }
@@ -66,7 +66,7 @@ class BuildPathMap extends AnsiConsoleUrlMappingsRenderer{
     public static String cleanString(String dirtyString) {
 
         Pattern escapeCodePattern = Pattern.compile(
-                "\u001B"		// escape code
+                "\u001B"        // escape code
                         + "\\["
                         + "\\d+"
                         + "(;\\d+)*"

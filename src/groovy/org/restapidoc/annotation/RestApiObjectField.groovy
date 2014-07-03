@@ -32,7 +32,6 @@ public @interface RestApiObjectField {
      */
     public String allowedType() default "";
 
-
     /**
      * The allowed name for this field
      * Override the field name if not empty.
@@ -44,7 +43,6 @@ public @interface RestApiObjectField {
 
     //only user if userForCreation = true
     public boolean mandatory() default true;
-
 
     //only if diff from java standart (bool true, string non empty, number !=0,...)
     public String defaultValue() default "";

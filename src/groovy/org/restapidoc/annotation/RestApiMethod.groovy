@@ -10,7 +10,7 @@ import java.lang.annotation.*
  *
  */
 @Documented
-@Target(value=ElementType.METHOD)
+@Target(value = ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RestApiMethod {
 
@@ -44,6 +44,13 @@ public @interface RestApiMethod {
      * @return
      */
     public String[] consumes() default [];
+
+    /**
+     * Extensions available for this service
+     * If extensions = "jpg","png", there will be two service doc (myservice/picture.jpg and png)
+     * @return
+     */
+    public String[] extensions() default [];
 
     //is it a listing action? => put max/offset
     public boolean listing() default false;

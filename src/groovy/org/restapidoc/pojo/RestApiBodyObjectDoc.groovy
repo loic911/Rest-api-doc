@@ -1,11 +1,8 @@
 package org.restapidoc.pojo
 
 import org.jsondoc.core.pojo.ApiBodyObjectDoc
-import org.jsondoc.core.util.JSONDocUtils
 
-import java.lang.reflect.Method;
-
-public class RestApiBodyObjectDoc extends ApiBodyObjectDoc{
+public class RestApiBodyObjectDoc extends ApiBodyObjectDoc {
     public String jsondocId = UUID.randomUUID().toString();
 //    private String object;
 //    private String multiple;
@@ -25,7 +22,7 @@ public class RestApiBodyObjectDoc extends ApiBodyObjectDoc{
 //    }
 
     public RestApiBodyObjectDoc(String object, String mapKeyObject, String mapValueObject, String multiple, String map) {
-        super(object,mapKeyObject,mapValueObject,multiple,map);
+        super(object, mapKeyObject, mapValueObject, multiple, map);
     }
 
 }

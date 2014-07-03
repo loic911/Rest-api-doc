@@ -1,9 +1,6 @@
 package org.restapidoc.annotation
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+
+import java.lang.annotation.*
 
 /**
  * This annotation is to be used on your method and represents the possible errors returned by the method
@@ -12,7 +9,7 @@ import java.lang.annotation.Target;
  *
  */
 @Documented
-@Target(value=ElementType.METHOD)
+@Target(value = ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RestApiErrors {
 

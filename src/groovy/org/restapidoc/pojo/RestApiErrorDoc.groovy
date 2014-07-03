@@ -6,11 +6,6 @@ import org.restapidoc.annotation.RestApiErrors
 /**
  * Created by lrollus on 4/10/14.
  */
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-
 public class RestApiErrorDoc {
     public String jsondocId = UUID.randomUUID().toString();
     private String code;

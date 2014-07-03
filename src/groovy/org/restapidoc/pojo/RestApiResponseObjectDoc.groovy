@@ -1,7 +1,7 @@
 package org.restapidoc.pojo
 
-import org.restapidoc.annotation.RestApiResponseObject
 import org.jsondoc.core.pojo.ApiResponseObjectDoc
+import org.restapidoc.annotation.RestApiResponseObject
 
 import java.lang.reflect.Method
 
@@ -17,7 +17,7 @@ public class RestApiResponseObjectDoc extends ApiResponseObjectDoc {
     }
 
     public RestApiResponseObjectDoc(String object, String mapKeyObject, String mapValueObject, String multiple, String map) {
-        super(object,mapKeyObject,mapValueObject,multiple,map);
+        super(object, mapKeyObject, mapValueObject, multiple, map);
     }
 
 

@@ -1,21 +1,18 @@
 package org.restapidoc
 
 import grails.converters.JSON
-import org.restapidoc.pojo.RestApiErrorDoc
-import org.restapidoc.pojo.RestApiObjectDoc
-import org.restapidoc.pojo.RestApiObjectFieldDoc
-import org.restapidoc.pojo.RestApiParamDoc
-import org.restapidoc.pojo.RestApiResponseObjectDoc
-import org.jsondoc.core.pojo.*
-import org.restapidoc.pojo.RestApiMethodDoc
-import org.restapidoc.pojo.RestApiVerb
+import org.jsondoc.core.pojo.ApiBodyObjectDoc
+import org.jsondoc.core.pojo.ApiDoc
+import org.jsondoc.core.pojo.ApiHeaderDoc
+import org.jsondoc.core.pojo.ApiObjectDoc
+import org.restapidoc.pojo.*
 
 /**
  * Created by stevben on 16/12/13.
  */
 class JSONUtils {
 
-    static def registerMarshallers () {
+    static def registerMarshallers() {
 
         JSON.registerObjectMarshaller(ApiObjectDoc) {
             def returnArray = [:]
@@ -131,19 +128,18 @@ class JSONUtils {
             return returnArray
         }
 
-         JSON.registerObjectMarshaller(ApiBodyObjectDoc) {
-             def returnArray = [:]
+        JSON.registerObjectMarshaller(ApiBodyObjectDoc) {
+            def returnArray = [:]
 
-             returnArray['jsondocId'] = it.jsondocId
-             returnArray['object'] = it.getObject()
-             returnArray['multiple'] = it.getMultiple()
-             returnArray['mapKeyObject'] = it.getMapKeyObject()
-             returnArray['mapValueObject'] = it.getMapValueObject()
-             returnArray['map'] = it.getMap()
+            returnArray['jsondocId'] = it.jsondocId
+            returnArray['object'] = it.getObject()
+            returnArray['multiple'] = it.getMultiple()
+            returnArray['mapKeyObject'] = it.getMapKeyObject()
+            returnArray['mapValueObject'] = it.getMapValueObject()
+            returnArray['map'] = it.getMap()
 
-             return returnArray
-         }
-
+            return returnArray
+        }
 
 
     }

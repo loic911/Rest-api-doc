@@ -17,6 +17,8 @@ grails {
             controllerPrefix = ""
             controllerSuffix = "Controller"
 
+            defaultFormatString = "{format}"
+
             defaultObjectFields = [ ]
 
             defaultErrorAll = []
