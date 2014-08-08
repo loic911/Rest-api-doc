@@ -63,6 +63,8 @@ grails {
                     //                [name:"max",description:"Pagination: Number of record per page (default 0 = no pagination)",type:"int"],
                     //                [name:"offset",description:"Pagination: Offset of first record (default 0 = first record)",type:"int"]
             ]
+
+            packageToScan = null
         }
     }
 }
