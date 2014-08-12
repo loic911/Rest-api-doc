@@ -1,6 +1,9 @@
 package org.restapidoc.pojo
 
+import org.jsondoc.core.pojo.ApiHeaderDoc
 import org.jsondoc.core.pojo.ApiMethodDoc
+import org.restapidoc.annotation.RestApiHeader
+import org.restapidoc.annotation.RestApiHeaders
 import org.restapidoc.annotation.RestApiMethod
 
 /**
@@ -66,6 +69,14 @@ public class RestApiMethodDoc extends ApiMethodDoc {
         return apiMethodDoc;
     }
 
+    public static List<ApiHeaderDoc> buildFromAnnotation(RestApiHeaders annotation) {
+        List<ApiHeaderDoc> docs = new ArrayList<ApiHeaderDoc>();
+        for (RestApiHeader restApiHeader : annotation.headers()) {
+            docs.add(new ApiHeaderDoc(restApiHeader.name(), restApiHeader.description()));
+        }
+        return docs;
+    }
+	
     public static RestApiVerb retrieveVerb(String verb) {
         return RestApiVerb.valueOf(verb.toUpperCase())
     }
