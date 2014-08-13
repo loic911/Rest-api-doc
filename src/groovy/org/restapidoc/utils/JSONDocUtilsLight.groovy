@@ -167,10 +167,12 @@ public class JSONDocUtilsLight extends JSONDocUtils {
             println "controllerName=$controllerName"
             println "actionWithPathParam=$actionWithPathParam"
 
-            path = "/" + controllerName + actionWithPathParam + ".${DEFAULT_FORMAT_NAME}"
+            String format = extension ? ".${DEFAULT_FORMAT_NAME}" : ""
+
+            path = "/" + controllerName + actionWithPathParam + format
         }
 
-        path = path.replace(DEFAULT_FORMAT_NAME, extension)
+        path = extension ? path.replace(DEFAULT_FORMAT_NAME, extension) : path
 
         if (annotation.verb() != RestApiVerb.NULL) {
             //verb is defined in the annotation
