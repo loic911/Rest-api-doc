@@ -287,10 +287,6 @@
                                                         <td>Object</td>
                                                         <td><code>{{bodyobject.object}}</code></td>
                                                 </tr>
-                                                <tr>
-                                                        <td>Multiple</td>
-                                                        <td>{{bodyobject.multiple}}</td>
-                                                </tr>
                                                 {{#if bodyobject.map}}
                                                         <tr>
                                                                 <td>Map key</td>
@@ -309,10 +305,6 @@
                                                 <tr>
                                                         <td>Object</td>
                                                         <td><code>{{response.object}}</code></td>
-                                                </tr>
-                                                <tr>
-                                                        <td>Multiple</td>
-                                                        <td>{{response.multiple}}</td>
                                                 </tr>
                                                 {{#if response.map}}
                                                         <tr>
@@ -629,9 +621,9 @@
                                         replacedPath = tempReplacedPath;
                                     });
 
+                                    replacedPath = replacedPath + "?";
                                     $("#queryparameters input").each(function() {
-                                        tempReplacedPath = replacedPath.replace("{"+this.name+"}", $(this).val());
-                                        replacedPath = tempReplacedPath;
+                                        replacedPath = replacedPath + "&" + this.name + "=" + $(this).val();
                                     });
 
                                     $('#testButton').button('loading');

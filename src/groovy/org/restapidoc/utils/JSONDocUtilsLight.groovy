@@ -76,6 +76,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         return apiDocs;
     }
 
+
     /**
      * Build doc for domain
      * @param classes Domain classes
@@ -122,17 +123,28 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                 String[] extensions = method.getAnnotation(RestApiMethod.class).extensions()
 
                 if (extensions == null || extensions.size() == 0) {
-                    apiMethodDocs << extractMethodDocs(method, controller, rules, DEFAULT_FORMAT)
+                    RestApiMethodDoc doc = extractMethodDocs(method, controller, rules, DEFAULT_FORMAT)
+                    if(!isAlreadyInJSON(doc,apiMethodDocs)) {
+                        apiMethodDocs << doc
+                    }
                 } else {
                     //if service a multiple extension, create a doc for each extension
                     extensions.each { extension ->
-                        apiMethodDocs << extractMethodDocs(method, controller, rules, extension)
+                        RestApiMethodDoc doc = extractMethodDocs(method, controller, rules, extension)
+                        if(!isAlreadyInJSON(doc,apiMethodDocs)) {
+                            apiMethodDocs << doc
+                        }
                     }
                 }
 
             }
         }
         return apiMethodDocs;
+    }
+
+    private boolean isAlreadyInJSON(RestApiMethodDoc methodDoc, List<RestApiMethodDoc> methodsDoc) {
+
+        return methodsDoc.find{return it.path.equals(methodDoc.path) && it.restVerb.equals(methodDoc.restVerb)}
     }
 
     public RestApiMethodDoc extractMethodDocs(Method method, Class<?> controller, MappingRules rules, String extension) {
@@ -202,8 +214,8 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         def urlParams = []
         def queryParameters = []
         if (method.isAnnotationPresent(RestApiParams.class)) {
-            urlParams = RestApiParamDoc.buildFromAnnotation(method.getAnnotation(RestApiParams.class), RestApiParamType.PATH)
-            queryParameters = RestApiParamDoc.buildFromAnnotation(method.getAnnotation(RestApiParams.class), RestApiParamType.QUERY)
+            urlParams = RestApiParamDoc.buildFromAnnotation(method.getAnnotation(RestApiParams.class), RestApiParamType.PATH,method)
+            queryParameters = RestApiParamDoc.buildFromAnnotation(method.getAnnotation(RestApiParams.class), RestApiParamType.QUERY,method)
         }
 
         DEFAULT_PARAMS_QUERY_ALL.each {
@@ -234,7 +246,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
             apiMethodDoc.setResponse(RestApiResponseObjectDoc.buildFromAnnotation(method.getAnnotation(RestApiResponseObject.class), method));
         } else {
             String currentDomain = getControllerDomainName(controller)
-            apiMethodDoc.setResponse(new RestApiResponseObjectDoc(currentDomain, "", "", "Unknow", ""))
+            apiMethodDoc.setResponse(new RestApiResponseObjectDoc(currentDomain, "", "", ""))
         }
 
         List<RestApiErrorDoc> errors = []

@@ -84,12 +84,27 @@ public class RestApiParamDoc {
         return null;
     }
 
-    public static List<RestApiParamDoc> buildFromAnnotation(RestApiParams annotation, RestApiParamType paramType) {
+    public static List<RestApiParamDoc> buildFromAnnotation(RestApiParams annotation, RestApiParamType paramType, Method method = null) {
         List<RestApiParamDoc> docs = new ArrayList<RestApiParamDoc>();
+        int index = 0
         for (RestApiParam apiParam : annotation.params()) {
-            docs.add(buildFromAnnotation(apiParam, paramType));
+            RestApiParamDoc paramDoc = buildFromAnnotation(apiParam, paramType)
+            if(paramDoc!=null && paramDoc.type.trim().equals("")) {
+                //no type define, try to get the type from the method parameter type
+                paramDoc.type = getMethodParameterType(method,index)
+            }
+            docs.add(paramDoc);
+            index++
         }
         return docs;
+    }
+
+    private static String getMethodParameterType(Method method, int index) {
+        def parametersClass = method.getParameterTypes().collect{it.getSimpleName()}
+        if(parametersClass.size()>index) {
+            return parametersClass[index]
+        }
+        return ""
     }
 
     public RestApiParamDoc() {

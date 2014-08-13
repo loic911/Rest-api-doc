@@ -47,7 +47,6 @@ class JSONUtils {
             returnArray['jsondocId'] = it.jsondocId
             returnArray['mapKeyObject'] = it.mapKeyObject
             returnArray['mapValueObject'] = it.mapValueObject
-            returnArray['multiple'] = it.multiple
             returnArray['object'] = it.object
             return returnArray
         }

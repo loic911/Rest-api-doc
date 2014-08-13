@@ -13,11 +13,11 @@ import java.lang.reflect.Method
 public class RestApiResponseObjectDoc extends ApiResponseObjectDoc {
 
     public static RestApiResponseObjectDoc buildFromAnnotation(RestApiResponseObject annotation, Method method) {
-        return new RestApiResponseObjectDoc(annotation.objectIdentifier(), "", "", annotation.multiple(), "");
+        return new RestApiResponseObjectDoc(annotation.objectIdentifier(), "", "", "");
     }
 
-    public RestApiResponseObjectDoc(String object, String mapKeyObject, String mapValueObject, String multiple, String map) {
-        super(object, mapKeyObject, mapValueObject, multiple, map);
+    public RestApiResponseObjectDoc(String object, String mapKeyObject, String mapValueObject, String map) {
+        super(object, mapKeyObject, mapValueObject,"", map);
     }
 
 

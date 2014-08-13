@@ -48,7 +48,10 @@ class APIUtils {
 
         //Retrieve all non-domain objects
         log.info "Retrieve non-Domain pojo..."
-        objectClasses.addAll ClasspathUtils.getClasses(POJO_PKG_TO_SCAN).findAll { it.isAnnotationPresent(RestApiObject) }
+        if(POJO_PKG_TO_SCAN) {
+            objectClasses.addAll ClasspathUtils.getClasses(POJO_PKG_TO_SCAN).findAll { it.isAnnotationPresent(RestApiObject) }
+        }
+
 
         //Generate doc
         def objectsDoc = builder.getApiObjectDocs(objectClasses, customDoc)
