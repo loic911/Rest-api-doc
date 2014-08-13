@@ -15,6 +15,7 @@ class APIUtils {
 
         String VERSION = grailsApplication.mergedConfig.grails.plugins.restapidoc.docVersion
         String BASEPATH = grailsApplication.mergedConfig.grails.plugins.restapidoc.basePath
+        String POJO_PKG_TO_SCAN = grailsApplication.mergedConfig.grails.plugins.restapidoc.packageToScan
 
         String CUSTOM_CLASS_NAME = grailsApplication.mergedConfig.grails.plugins.restapidoc.customClassName
         def customDoc = null
@@ -44,6 +45,10 @@ class APIUtils {
             def domainClass = domainArtefact.getClazz()
             objectClasses.add(domainClass)
         }
+
+        //Retrieve all non-domain objects
+        log.info "Retrieve non-Domain pojo..."
+        objectClasses.addAll ClasspathUtils.getClasses(POJO_PKG_TO_SCAN).findAll { it.isAnnotationPresent(RestApiObject) }
 
         //Generate doc
         def objectsDoc = builder.getApiObjectDocs(objectClasses, customDoc)
