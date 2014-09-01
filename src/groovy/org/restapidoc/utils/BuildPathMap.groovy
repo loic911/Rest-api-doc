@@ -50,10 +50,14 @@ class BuildPathMap extends AnsiConsoleUrlMappingsRenderer {
                 def urlPattern = establishUrlPattern(urlMapping, isAnsiEnabled, longestMapping)
 
                 if (urlMapping?.actionName) {
-                    if (urlMapping?.actionName instanceof String) continue
-                    urlMapping?.actionName.each { actName ->
-                        urlPattern = urlPattern.replace("\${", "{") //replace ${format} with {format}
-                        rules.addRule(controller.toString(), actName.value, cleanString(urlPattern), actName.key, grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultFormat)
+                    // urlMapping can be either a string or a closure that returns the result
+                    if (urlMapping?.actionName instanceof String) {
+                        rules.addRule(controller.toString(), urlMapping.actionName.toString(), cleanString(urlPattern), urlMapping.httpMethod, grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultFormat)
+                    } else {
+                        urlMapping?.actionName.each { actName ->
+                            urlPattern = urlPattern.replace("\${", "{") //replace ${format} with {format}
+                            rules.addRule(controller.toString(), actName.value, cleanString(urlPattern), actName.key, grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultFormat)
+                        }
                     }
                 }
             }
@@ -71,6 +75,7 @@ class BuildPathMap extends AnsiConsoleUrlMappingsRenderer {
                         + "\\d+"
                         + "(;\\d+)*"
                         + "[@-~]"
+                        + "|\\\$" // Url mapping returns parameters formatted like this : ${parameter}.
         );
         escapeCodePattern.matcher(dirtyString).replaceAll("");
 
