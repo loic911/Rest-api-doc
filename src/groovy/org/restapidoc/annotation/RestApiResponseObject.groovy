@@ -18,9 +18,4 @@ public @interface RestApiResponseObject {
      */
     public String objectIdentifier() default "";
 
-    /**
-     * ApiObject Idenfitier
-     * @return
-     */
-    public String multiple() default "false";
 }
