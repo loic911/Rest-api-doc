@@ -219,16 +219,16 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         }
 
         DEFAULT_PARAMS_QUERY_ALL.each {
-            queryParameters.add(new RestApiParamDoc(it.name, it.description, it.type, "false", new String[0], ""))
+            queryParameters.add(new RestApiParamDoc(it.name, it.description, it.type, "false", new String[0], Enum, ""))
         }
 
         if (method.getAnnotation(RestApiMethod.class).listing()) {
             DEFAULT_PARAMS_QUERY_MULTIPLE.each {
-                queryParameters.add(new RestApiParamDoc(it.name, it.description, it.type, "false", new String[0], ""))
+                queryParameters.add(new RestApiParamDoc(it.name, it.description, it.type, "false", new String[0], Enum, ""))
             }
         } else {
             DEFAULT_PARAMS_QUERY_SINGLE.each {
-                queryParameters.add(new RestApiParamDoc(it.name, it.description, it.type, "false", new String[0], ""))
+                queryParameters.add(new RestApiParamDoc(it.name, it.description, it.type, "false", new String[0], Enum, ""))
             }
         }
 
