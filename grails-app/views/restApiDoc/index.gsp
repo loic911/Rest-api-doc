@@ -10,7 +10,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="../js/jsondoc/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/jsondoc/handlebars-1.0.0.beta.6.js"></script>
+    <script type="text/javascript" src="../js/jsondoc/handlebars-v2.0.0.js"></script>
     <script type="text/javascript" src="../js/jsondoc/jlinq.js"></script>
     <script type="text/javascript" src="../js/jsondoc/prettify.js"></script>
     <script src="../js/jsondoc/bootstrap-button.js"></script>
@@ -234,7 +234,11 @@
                                                         {{#if this.allowedvalues}}
                                                         <tr>
                                                                 <td></td>
-                                                                <td>Allowed values: {{this.allowedvalues}}</td>
+                                                                <td>Allowed values:
+                                                                {{#each this.allowedvalues}}
+                                                                {{this}}{{#unless @last}},&nbsp{{/unless}}
+                                                                {{/each}}
+                                                                </td>
                                                         </tr>
                                                         {{/if}}
                                                         {{#if this.format}}
@@ -268,7 +272,11 @@
                                                         {{#if this.allowedvalues}}
                                                         <tr>
                                                                 <td></td>
-                                                                <td>Allowed values: {{this.allowedvalues}}</td>
+                                                                <td>Allowed values:
+                                                                {{#each this.allowedvalues}}
+                                                                {{this}}{{#unless @last}},&nbsp{{/unless}}
+                                                                {{/each}}
+                                                                </td>
                                                         </tr>
                                                         {{/if}}
                                                         {{#if this.format}}
