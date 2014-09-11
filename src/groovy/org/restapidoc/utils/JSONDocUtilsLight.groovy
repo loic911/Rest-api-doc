@@ -59,7 +59,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
      * @param classes Controllers classes
      * @return Controller method doc
      */
-    public Set<ApiDoc> getApiDocs(Set<Class<?>> classes, def grailsApplication) {
+    public Set<ApiDoc> getApiDocs(Set<Class<?>> objectClasses, Set<Class<?>> classes, def grailsApplication) {
         Set<ApiDoc> apiDocs = new TreeSet<ApiDoc>();
 
         //build map with ["controller.action" => path and verb]
@@ -70,7 +70,8 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         //For each controller, build doc from annotation and build method doc
         for (Class<?> controller : classes) {
             RestApiDoc apiDoc = RestApiDoc.buildFromAnnotation(controller.getAnnotation(RestApi.class));
-            apiDoc.setMethods(getApiMethodDocs(controller, rules));
+            apiDoc.setMethods(getApiMethodDocs(objectClasses, controller, rules));
+            apiDoc.setMethods(getApiMethodDocs(objectClasses, controller, rules));
             apiDocs.add(apiDoc);
         }
         return apiDocs;
@@ -110,7 +111,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
     /**
      * Build method doc object for all controller methods
      */
-    private List<RestApiMethodDoc> getApiMethodDocs(Class<?> controller, MappingRules rules) {
+    private List<RestApiMethodDoc> getApiMethodDocs(Set<Class<?>> objectClasses, Class<?> controller, MappingRules rules) {
         log.info "\tProcess controller ${controller} ..."
         List<RestApiMethodDoc> apiMethodDocs = new ArrayList<RestApiMethodDoc>();
         Method[] methods = controller.getMethods();
@@ -123,14 +124,14 @@ public class JSONDocUtilsLight extends JSONDocUtils {
                 String[] extensions = method.getAnnotation(RestApiMethod.class).extensions()
 
                 if (extensions == null || extensions.size() == 0) {
-                    RestApiMethodDoc doc = extractMethodDocs(method, controller, rules, DEFAULT_FORMAT)
+                    RestApiMethodDoc doc = extractMethodDocs(objectClasses, method, controller, rules, DEFAULT_FORMAT)
                     if(!isAlreadyInJSON(doc,apiMethodDocs)) {
                         apiMethodDocs << doc
                     }
                 } else {
                     //if service a multiple extension, create a doc for each extension
                     extensions.each { extension ->
-                        RestApiMethodDoc doc = extractMethodDocs(method, controller, rules, extension)
+                        RestApiMethodDoc doc = extractMethodDocs(objectClasses, method, controller, rules, extension)
                         if(!isAlreadyInJSON(doc,apiMethodDocs)) {
                             apiMethodDocs << doc
                         }
@@ -147,7 +148,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         return methodsDoc.find{return it.path.equals(methodDoc.path) && it.restVerb.equals(methodDoc.restVerb)}
     }
 
-    public RestApiMethodDoc extractMethodDocs(Method method, Class<?> controller, MappingRules rules, String extension) {
+    public RestApiMethodDoc extractMethodDocs(Set<Class<?>> objectClasses, Method method, Class<?> controller, MappingRules rules, String extension) {
 
         //Retrieve the path/verb to go to this method
         MappingRulesEntry rule = rules.getRule(controller.simpleName, method.name)
@@ -238,7 +239,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         if (method.isAnnotationPresent(RestApiBodyObject.class)) {
             apiMethodDoc.setBodyobject(RestApiBodyObjectDoc.buildFromAnnotation(method));
         } else if (verb.equals("POST") || verb.equals("PUT")) {
-            String currentDomain = getControllerDomainName(controller)
+            String currentDomain = getControllerDomainName(objectClasses, controller)
             apiMethodDoc.setBodyobject(new ApiBodyObjectDoc(currentDomain, "", "", "Unknow", ""));
         }
 
@@ -303,7 +304,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         return false;
     }
 
-    public String getControllerDomainName(Class controller) {
+    public String getControllerDomainName(Set<Class<?>> objectClasses, Class controller) {
         try {
             Method m = controller.getDeclaredMethod("currentDomainName", Object)
             //if a method currentDomainName exist in controller, get its String
@@ -319,8 +320,30 @@ public class JSONDocUtilsLight extends JSONDocUtils {
             if (controllerName.endsWith(CONTROLLER_SUFFIX)) {
                 controllerName = controllerName.substring(0, controllerName.size() - CONTROLLER_SUFFIX.size())
             }
-            splitCamelToBlank(Introspector.decapitalize(controllerName))
+
+            String domainRestApiObjectName = getDomainRestApiObjectName(objectClasses, controllerName);
+
+            // return the name of the domain @RestApiObject, or if it does not exists, simply split the camel name
+            domainRestApiObjectName ?: splitCamelToBlank(Introspector.decapitalize(controllerName))
         }
+    }
+
+    /**
+     * Look for the name defined in the @RestApiObject annoted domain object
+     */
+    public String getDomainRestApiObjectName(Set<Class<?>> objectClasses, String domainName) {
+        // Search the domain class using its name
+        Class<?> domainClass =  objectClasses.find {
+            it.simpleName == domainName
+        }
+
+        if (domainClass == null || !domainClass.isAnnotationPresent(RestApiObject)) {
+            return null
+        }
+
+        // look for the @DomainRestApiObject name
+        RestApiObject restApiObject = domainClass.getAnnotation(RestApiObject);
+        return restApiObject.name();
     }
 
     static String splitCamelToBlank(String stringToSplit) {
