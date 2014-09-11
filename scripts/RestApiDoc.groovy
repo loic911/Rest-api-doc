@@ -18,7 +18,7 @@ target(restApiDoc: "Build Rest Api Doc in a JSON file") {
 
         def result = apiUtils.buildApiRegistry(grailsApp)
 
-        File docFile = new File("grails-app/conf/"+grailsApp.mergedConfig.grails.plugins.restapidoc.outputFile)
+        File docFile = new File(grailsApp.mergedConfig.grails.plugins.restapidoc.outputFile)
 
         println("Write in file " + docFile.absolutePath+"...")
 

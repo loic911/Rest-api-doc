@@ -17,9 +17,9 @@ class RestApiDocController {
     }
 
     def api() {
-        InputStream doc = this.class.classLoader.getResourceAsStream(grailsApplication.mergedConfig.grails.plugins.restapidoc.outputFile)
-        //File docFile = new File("grails-app/conf/"+grailsApplication.mergedConfig.grails.plugins.restapidoc.outputFile)
-        render(IOUtils.toString(doc, "UTF-8"))
+        //InputStream doc = this.class.classLoader.getResourceAsStream(grailsApplication.mergedConfig.grails.plugins.restapidoc.outputFile)
+        File docFile = new File(grailsApplication.mergedConfig.grails.plugins.restapidoc.outputFile)
+        render(docFile.text)
     }
 
 //    def build() {
