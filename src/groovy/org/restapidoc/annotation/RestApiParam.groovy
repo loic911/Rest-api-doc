@@ -39,6 +39,12 @@ public @interface RestApiParam {
     public String[] allowedvalues() default [];
 
     /**
+     * An enum representing the allowed values this parameter can have. Default value is *
+     * @return
+     */
+    public Class<? extends Enum> allowedEnumValues() default Enum;
+
+    /**
      * The format from the parameter (ex. yyyy-MM-dd HH:mm:ss, ...)
      * @return
      */
