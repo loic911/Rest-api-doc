@@ -19,7 +19,7 @@ public class RestApiParamDoc {
     private String[] allowedvalues;
     private String format;
 
-    public RestApiParamDoc(String name, String description, String type, String required, String[] allowedvalues, String format) {
+    public RestApiParamDoc(String name, String description, String type, String required, String[] allowedvalues, Class<? extends Enum> allowedEnumValues, String format) {
         super();
         this.name = name;
         this.description = description;
@@ -27,6 +27,12 @@ public class RestApiParamDoc {
         this.required = required;
         this.allowedvalues = allowedvalues;
         this.format = format;
+
+        // If the allowed values must be extracted from an enum
+        Enum[] enumValues = allowedEnumValues.getEnumConstants()
+        if (enumValues != null) {
+            this.allowedvalues = enumValues.collect { it.toString() }
+        }
     }
 
     public static List<RestApiParamDoc> getApiParamDocs(Method method, RestApiParamType paramType) {
@@ -72,14 +78,14 @@ public class RestApiParamDoc {
     public
     static RestApiParamDoc buildFromAnnotation(RestApiParam annotation, String type, RestApiParamType paramType) {
         if (annotation.paramType().equals(paramType)) {
-            return new RestApiParamDoc(annotation.name(), annotation.description(), type, String.valueOf(annotation.required()), annotation.allowedvalues(), annotation.format());
+            return new RestApiParamDoc(annotation.name(), annotation.description(), type, String.valueOf(annotation.required()), annotation.allowedvalues(), annotation.allowedEnumValues(), annotation.format());
         }
         return null;
     }
 
     public static RestApiParamDoc buildFromAnnotation(RestApiParam annotation, RestApiParamType paramType) {
         if (annotation.paramType().equals(paramType)) {
-            return new RestApiParamDoc(annotation.name(), annotation.description(), annotation.type(), String.valueOf(annotation.required()), annotation.allowedvalues(), annotation.format());
+            return new RestApiParamDoc(annotation.name(), annotation.description(), annotation.type(), String.valueOf(annotation.required()), annotation.allowedvalues(), annotation.allowedEnumValues(), annotation.format());
         }
         return null;
     }

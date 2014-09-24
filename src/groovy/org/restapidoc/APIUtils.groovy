@@ -55,7 +55,7 @@ class APIUtils {
 
         //Generate doc
         def objectsDoc = builder.getApiObjectDocs(objectClasses, customDoc)
-        def controllerDoc = builder.getApiDocs(controllersClasses, grailsApplication)
+        def controllerDoc = builder.getApiDocs(objectClasses, controllersClasses, grailsApplication)
 
         log.info "Doc builder is finished..."
 
