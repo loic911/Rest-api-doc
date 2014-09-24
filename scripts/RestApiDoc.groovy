@@ -12,13 +12,13 @@ target(restApiDoc: "Build Rest Api Doc in a JSON file") {
     def jsonUtils = classLoader.loadClass('org.restapidoc.JSONUtils')
 
     try {
-        println("Start build JSON doc...")
+        println("Start build JSON doc ${grailsApp.mergedConfig.grails.plugins.restapidoc.outputFileGeneration}...")
 
        jsonUtils.registerMarshallers ()
 
         def result = apiUtils.buildApiRegistry(grailsApp)
 
-        File docFile = new File(grailsApp.mergedConfig.grails.plugins.restapidoc.outputFile)
+        File docFile = new File(grailsApp.mergedConfig.grails.plugins.restapidoc.outputFileGeneration)
 
         println("Write in file " + docFile.absolutePath+"...")
 

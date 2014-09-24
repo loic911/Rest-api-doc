@@ -8,7 +8,8 @@ grails {
 
             basePath = "Fill with basePath config" //"http://localhost:8080/RestApiDoc" //app.name
 
-            outputFile = "restapidoc.json"
+            outputFileGeneration = "restapidoc.json"
+            outputFileReading = "restapidoc.json"
             customClassName = null  //"org.restapidoc.CustomResponseDoc"
 
             defaultFormat = "json"
@@ -48,7 +49,7 @@ grails {
                     "list" : "list",
                     "add" : "add",
                     "save" : "save",
-                    "update" : "udpate/{id}",
+                    "update" : "update/{id}",
                     "edit" : "edit/{id}",
                     "delete" : "delete/{id}",
                     "remove" : "delete/{id}",

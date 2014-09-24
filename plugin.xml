@@ -1,4 +1,4 @@
-<plugin name='rest-api-doc' version='0.3' grailsVersion='2.3 &gt; *'>
+<plugin name='rest-api-doc' version='0.3.1' grailsVersion='2.3 &gt; *'>
   <author>Loïc Rollus</author>
   <authorEmail>loicrollus@gmail.com</authorEmail>
   <title>RestApiDoc Plugin</title>
