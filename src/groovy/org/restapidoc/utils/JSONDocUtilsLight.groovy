@@ -246,7 +246,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         if (method.isAnnotationPresent(RestApiResponseObject.class)) {
             apiMethodDoc.setResponse(RestApiResponseObjectDoc.buildFromAnnotation(method.getAnnotation(RestApiResponseObject.class), method));
         } else {
-            String currentDomain = getControllerDomainName(controller)
+            String currentDomain = getControllerDomainName(objectClasses,controller)
             apiMethodDoc.setResponse(new RestApiResponseObjectDoc(currentDomain, "", "", ""))
         }
 
