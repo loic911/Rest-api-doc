@@ -42,7 +42,7 @@ public class RestApiMethodDoc extends ApiMethodDoc {
         def prod = Arrays.asList(annotation.produces())
         def cons = Arrays.asList(annotation.consumes())
 
-        if (cons.isEmpty() && (objVerb == RestApiVerb.POST || objVerb == RestApiVerb.PUT)) {
+        if (cons.isEmpty() && (objVerb == RestApiVerb.POST || objVerb == RestApiVerb.PUT || objVerb == RestApiVerb.PATCH)) {
             //if no cons definition and POST/PUT method => auto put json
             cons = [defaultCons]
         }
