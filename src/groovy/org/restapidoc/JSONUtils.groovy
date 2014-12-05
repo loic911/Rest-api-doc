@@ -107,6 +107,8 @@ class JSONUtils {
                 returnArray['verb'] = "POST"
             if (it.restVerb == RestApiVerb.DELETE)
                 returnArray['verb'] = "DELETE"
+            if (it.restVerb == RestApiVerb.PATCH)
+                returnArray['verb'] = "PATCH"
             returnArray['produces'] = it.produces
             returnArray['consumes'] = it.consumes
             returnArray['headers'] = it.headers
