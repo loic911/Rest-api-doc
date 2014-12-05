@@ -238,7 +238,7 @@ public class JSONDocUtilsLight extends JSONDocUtils {
 
         if (method.isAnnotationPresent(RestApiBodyObject.class)) {
             apiMethodDoc.setBodyobject(RestApiBodyObjectDoc.buildFromAnnotation(method));
-        } else if (verb.equals("POST") || verb.equals("PUT")) {
+        } else if (verb.equals("POST") || verb.equals("PUT") || verb.equals("PATCH")) {
             String currentDomain = getControllerDomainName(objectClasses, controller)
             apiMethodDoc.setBodyobject(new ApiBodyObjectDoc(currentDomain, "", "", "Unknow", ""));
         }
