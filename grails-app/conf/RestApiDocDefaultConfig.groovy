@@ -41,7 +41,9 @@ grails {
                     "update" : "PUT",
                     "edit" : "PUT",
                     "delete" : "DELETE",
-                    "remove" : "DELETE"
+                    "remove" : "DELETE",
+                    "partial" : "PATCH",
+                    "patch" : "PATCH"
             ]
 
             pathPerMethodPrefix =[
