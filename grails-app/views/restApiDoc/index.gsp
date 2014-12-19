@@ -40,6 +40,10 @@
         padding-top : 3px;
         background-color: #F89406;
     }
+    .PATCH {
+        padding-top : 3px;
+        background-color: #889406;
+    }
     .DELETE {
         padding-top : 3px;
         background-color: #B94A48;
@@ -419,7 +423,21 @@
         <div class="span12" style="margin-left:0px">
                 <div id="bodyobject" class="playground-spacer">
                         <h4>Body object</h4>
-                        <textarea class="span12" id="inputJson" rows=10 />
+                        <label class="select">Body type:
+                            <g:select name="bodyTypeSelect" 
+                                      from="${['String body', 'Multipart body']}"
+                                      value="String body"
+                                      onchange="updateMethodBodyForm();">
+                            </g:select>
+                        <label>
+                        <div id="methodStringBody">
+                            <textarea class="span12" id="inputJson" rows=10 />
+                        </div>
+                        <div id="methodMultipartBody" style="display:none;">
+                            <g:form name="multipartFilesForm" enctype="multipart/form-data">
+                                Files: <input type="file" name="inputMultipartFiles" onchange="chooseFileUpdate(this.files);" multiple="true"/>
+                            </g:form>
+                        </div>
                 </div>
         </div>
         {{/if}}
@@ -514,6 +532,17 @@
             return false;
         } else {
             return fetchdoc(value);
+        }
+    }
+
+    function updateMethodBodyForm() {
+        var methodBodyType = $("#bodyTypeSelect").val();
+        if (methodBodyType == "String body"){
+            $("#methodMultipartBody").hide();
+            $("#methodStringBody").show();
+        } else if (methodBodyType == "Multipart body"){
+            $("#methodStringBody").hide();
+            $("#methodMultipartBody").show();
         }
     }
 
@@ -613,6 +642,7 @@
                                 $("#testContent").show();
 
                                 $("#produces input:first").attr("checked", "checked");
+                                $("#consumes input:first").attr("checked", "checked");
 
                                 $("#testButton").click(function() {
                                     var headers = new Object();
@@ -631,17 +661,33 @@
 
                                     replacedPath = replacedPath + "?";
                                     $("#queryparameters input").each(function() {
-                                        replacedPath = replacedPath + "&" + this.name + "=" + $(this).val();
+                                        if($(this).val() != null && $(this).val().toString().trim() != ""){
+                                            replacedPath = replacedPath + "&" + this.name + "=" + $(this).val();
+                                        }
                                     });
 
                                     $('#testButton').button('loading');
 
+                                    var requestData;
+                                    var cType;
+                                    var isProcessData;
+                                    if ($("#bodyTypeSelect").val() == "Multipart body"){
+                                        cType = false;
+                                        isProcessData = false;
+                                        requestData = new FormData(document.forms.namedItem("multipartFilesForm"));
+                                    } else {
+                                        cType = $("#consumes input:checked").val();
+                                        isProcessData = true;
+                                        requestData = $("#inputJson").val();
+                                    }
+
                                     var res = $.ajax({
                                         url : model.basePath + replacedPath,
                                         type: method.verb,
-                                        data: $("#inputJson").val(),
+                                        data: requestData,
                                         headers: headers,
-                                        contentType: $("#consumes input:checked").val(),
+                                        processData: isProcessData,
+                                        contentType: cType,
                                         success : function(data) {
                                             printResponse(data, res, this.url);
 
