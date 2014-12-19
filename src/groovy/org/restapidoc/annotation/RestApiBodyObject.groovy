@@ -13,7 +13,8 @@ import java.lang.annotation.*
 public @interface RestApiBodyObject {
 
     /**
-     * The name of the url parameter, as expected by the server
+     *The name of Body Object
+     *if name = "null", do not need a body
      * @return
      */
     public String name();
