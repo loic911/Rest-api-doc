@@ -237,7 +237,10 @@ public class JSONDocUtilsLight extends JSONDocUtils {
         apiMethodDoc.setQueryparameters(queryParameters.minus(null));
 
         if (method.isAnnotationPresent(RestApiBodyObject.class)) {
-            apiMethodDoc.setBodyobject(RestApiBodyObjectDoc.buildFromAnnotation(method));
+            def bodyAnnotation = method.getAnnotation(RestApiBodyObject.class);
+            if (bodyAnnotation.name().trim() != "null") {
+                apiMethodDoc.setBodyobject(RestApiBodyObjectDoc.buildFromAnnotation(method));
+            }
         } else if (verb.equals("POST") || verb.equals("PUT") || verb.equals("PATCH")) {
             String currentDomain = getControllerDomainName(objectClasses, controller)
             apiMethodDoc.setBodyobject(new ApiBodyObjectDoc(currentDomain, "", "", "Unknow", ""));
