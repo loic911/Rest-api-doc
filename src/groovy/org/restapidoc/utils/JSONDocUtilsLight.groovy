@@ -187,6 +187,8 @@ public class JSONDocUtilsLight extends JSONDocUtils {
 
         path = extension ? path.replace(DEFAULT_FORMAT_NAME, extension) : path
 
+        println  "annotation.verb()=${annotation.verb()}"
+
         if (annotation.verb() != RestApiVerb.NULL) {
             //verb is defined in the annotation
             verb = method.getAnnotation(RestApiMethod.class).verb().name().toUpperCase()

@@ -5,6 +5,6 @@ package org.restapidoc.pojo
  */
 public enum RestApiVerb {
 
-    GET, POST, PUT, DELETE, PATCH, NULL;
+    GET, POST, PUT, DELETE, PATCH, ALL, NULL;
 
 }

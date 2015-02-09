@@ -19,6 +19,7 @@ class RestApiDocController {
     def api() {
         //InputStream doc = this.class.classLoader.getResourceAsStream(grailsApplication.mergedConfig.grails.plugins.restapidoc.outputFile)
         File docFile = new File(grailsApplication.mergedConfig.grails.plugins.restapidoc.outputFileReading)
+        log.info "Read doc file ${docFile.absolutePath}"
         render(docFile.text)
     }
 }
