@@ -1,0 +1,189 @@
+<blockquote>
+  <p style="text-transform: uppercase;"><span id="apiName"></span></p>
+  <small><span id="apiDescription"></span></cite></small>
+</blockquote>
+
+<div class="accordion" id="accordion">
+    {{#methods}}
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <span class="label pull-right {{verb}}" style="margin-right: 5px; margin-top: 8px;">{{verb}}</span>
+            <a href="#_{{jsondocId}}" id="{{jsondocId}}" rel="method" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle">{{path}}</a>
+        </div>
+        <div class="accordion-body collapse" id="_{{jsondocId}}">
+            <div class="accordion-inner">
+                <table class="table table-condensed table-striped table-bordered">
+                    <tr>
+                        <th style="width:15%;">Path</th>
+                        <td><code>{{path}}</code></td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{description}}</td>
+                    </tr>
+                    <tr>
+                        <th>Method</th>
+                        <td><span class="label {{verb}}">{{verb}}</span></td>
+                    </tr>
+                    {{#if produces}}
+                    <tr>
+                        <th colspan=2>Produces</th>
+                    </tr>
+                    {{#each produces}}
+                    <tr>
+                        <td colspan=2><code>{{this}}</code></td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    {{#if consumes}}
+                    <tr>
+                        <th colspan=2>Consumes</th>
+                    </tr>
+                    {{#each consumes}}
+                    <tr>
+                        <td colspan=2><code>{{this}}</code></td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    {{#if headers}}
+                    <tr>
+                        <th colspan=2>Headers</th>
+                    </tr>
+                    {{#each headers}}
+                    <tr>
+                        <td><code>{{this.name}}</code></td>
+                        <td>{{this.description}}</td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    {{#if pathparameters}}
+                    <tr>
+                        <th colspan=2>Path parameters</th>
+                    </tr>
+                    {{#each pathparameters}}
+                    <tr>
+                        <td><code>{{this.name}}</code></td>
+                        <td>Required: {{this.required}}</td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Type: {{this.type}}</td>
+                    </tr>
+                    {{#if this.description}}
+                    <tr>
+                        <td></td>
+                        <td>Description: {{this.description}}</td>
+                    </tr>
+                    {{/if}}
+                    {{#if this.allowedvalues}}
+                    <tr>
+                        <td></td>
+                        <td>Allowed values:
+                            {{#each this.allowedvalues}}
+                            {{this}}{{#unless @last}},&nbsp{{/unless}}
+                            {{/each}}
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{#if this.format}}
+                    <tr>
+                        <td></td>
+                        <td>Format: {{this.format}}</td>
+                    </tr>
+                    {{/if}}
+                    {{/each}}
+                    {{/if}}
+                    {{#if queryparameters}}
+                    <tr>
+                        <th colspan=2>Query parameters</th>
+                    </tr>
+                    {{#each queryparameters}}
+                    <tr>
+                        <td><code>{{this.name}}</code></td>
+                        <td>Required: {{this.required}}</td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Type: {{this.type}}</td>
+                    </tr>
+                    {{#if this.description}}
+                    <tr>
+                        <td></td>
+                        <td>Description: {{this.description}}</td>
+                    </tr>
+                    {{/if}}
+                    {{#if this.allowedvalues}}
+                    <tr>
+                        <td></td>
+                        <td>Allowed values:
+                            {{#each this.allowedvalues}}
+                            {{this}}{{#unless @last}},&nbsp{{/unless}}
+                            {{/each}}
+                        </td>
+                    </tr>
+                    {{/if}}
+                    {{#if this.format}}
+                    <tr>
+                        <td></td>
+                        <td>Format: {{this.format}}</td>
+                    </tr>
+                    {{/if}}
+                    {{/each}}
+                    {{/if}}
+                    {{#if bodyobject}}
+                    <tr>
+                        <th colspan=2>Body object</th>
+                    </tr>
+                    <tr>
+                        <td>Object</td>
+                        <td><code>{{bodyobject.object}}</code></td>
+                    </tr>
+                    {{#if bodyobject.map}}
+                    <tr>
+                        <td>Map key</td>
+                        <td><code>{{bodyobject.mapKeyObject}}</code></td>
+                    </tr>
+                    <tr>
+                        <td>Map value</td>
+                        <td><code>{{bodyobject.mapValueObject}}</code></td>
+                    </tr>
+                    {{/if}}
+                    {{/if}}
+                    {{#if response}}
+                    <tr>
+                        <th colspan=2>Response object</th>
+                    </tr>
+                    <tr>
+                        <td>Object</td>
+                        <td><code>{{response.object}}</code></td>
+                    </tr>
+                    {{#if response.map}}
+                    <tr>
+                        <td>Map key</td>
+                        <td><code>{{response.mapKeyObject}}</code></td>
+                    </tr>
+                    <tr>
+                        <td>Map value</td>
+                        <td><code>{{response.mapValueObject}}</code></td>
+                    </tr>
+                    {{/if}}
+                    {{/if}}
+                    {{#if apierrors}}
+                    <tr>
+                        <th colspan=2>Errors</th>
+                    </tr>
+                    {{#each apierrors}}
+                    <tr>
+                        <td><code>{{this.code}}</code></td>
+                        <td>{{this.description}}</td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                </table>
+            </div>
+        </div>
+    </div>
+    {{/methods}}
+</div>

@@ -17,6 +17,12 @@
         <sourceRoots />
       </configuration>
     </facet>
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map />
+        <naming-strategy-map />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -24,59 +30,135 @@
       <sourceFolder url="file://$MODULE_DIR$/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/i18n" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/test/integration" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/utils" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/domain" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/taglib" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/test/unit" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/test/integration" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target/classes" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="grails-2.4.2" level="application" />
-    <orderEntry type="library" name="grails-2.4.2" level="application" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module" module-name="htc-specialist-grailsPlugins" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.3.11" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.3.11" level="application" />
+    <orderEntry type="module-library">
       <library name="Grails User Library (restapidoc)">
         <CLASSES>
           <root url="file://$MODULE_DIR$/lib" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/3.1.0.RELEASE/spring-test-3.1.0.RELEASE.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/spockframework/spock-grails-support/0.7-groovy-2.0/spock-grails-support-0.7-groovy-2.0.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/nekohtml/nekohtml/1.9.6.2/nekohtml-1.9.6.2.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/nekohtml/xercesMinimal/1.9.6.2/xercesMinimal-1.9.6.2.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/wagon/wagon-http-shared/1.0-beta-6/wagon-http-shared-1.0-beta-6.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/wagon/wagon-http-lightweight/1.0-beta-6/wagon-http-lightweight-1.0-beta-6.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/wagon/wagon-file/1.0-beta-6/wagon-file-1.0-beta-6.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-settings/2.2.1/maven-settings-2.2.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-error-diagnostics/2.2.1/maven-error-diagnostics-2.2.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-model/2.2.1/maven-model-2.2.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-repository-metadata/2.2.1/maven-repository-metadata-2.2.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-artifact/2.2.1/maven-artifact-2.2.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-utils/1.5.15/plexus-utils-1.5.15.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-ant-tasks/2.1.3/maven-ant-tasks-2.1.3.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/7.0.42/tomcat-embed-core-7.0.42.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jdt/core/compiler/ecj/3.7.2/ecj-3.7.2.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.42/tomcat-embed-logging-log4j-7.0.42.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.42/tomcat-embed-jasper-7.0.42.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina-ant/7.0.42/tomcat-catalina-ant-7.0.42.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.sun.xml.ws/jaxws-rt/jars/jaxws-rt-2.2.6.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.github.slugify/slugify/jars/slugify-1.0-RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.2.0.RC1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.2.0.RC1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/bouncycastle/bcprov-jdk14/jars/bcprov-jdk14-136.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/bouncycastle/bcmail-jdk14/jars/bcmail-jdk14-136.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.lowagie/itext/jars/itext-2.1.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.codehaus.woodstox/woodstox-core-asl/jars/woodstox-core-asl-4.1.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jvnet.staxex/stax-ex/jars/stax-ex-1.7.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.xml.stream/stax-api/jars/stax-api-1.0-2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.sun.xml.stream.buffer/streambuffer/jars/streambuffer-1.4.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jvnet.mimepull/mimepull/jars/mimepull-1.8.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.sun.xml.messaging.saaj/saaj-impl/jars/saaj-impl-1.3.18.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.sun.xml.bind/jaxb-impl/jars/jaxb-impl-2.2.5.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.jws/jsr181-api/jars/jsr181-api-1.0-MR1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.glassfish/javax.annotation/jars/javax.annotation-3.1.1-b06.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.xml.soap/saaj-api/jars/saaj-api-1.3.4.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.newrelic.agent.java/newrelic-api/jars/newrelic-api-2.18.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/c3p0/c3p0/jars/c3p0-0.9.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.quartz-scheduler/quartz/jars/quartz-2.2.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/xml-resolver/xml-resolver/jars/xml-resolver-1.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/xerces/xercesImpl/jars/xercesImpl-2.9.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/net.sourceforge.nekohtml/nekohtml/jars/nekohtml-1.9.16.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/net.sf.ezmorph/ezmorph/jars/ezmorph-1.0.6.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/net.sf.json-lib/json-lib/jars/json-lib-2.3-jdk15.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.2.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.2.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.codehaus.groovy.modules.http-builder/http-builder/jars/http-builder-0.6.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.sun.mail/javax.mail/jars/javax.mail-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework/spring-test/jars/spring-test-3.1.4.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.activation/activation/jars/activation-1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.mail/javax.mail-api/jars/javax.mail-api-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/net.sf.opencsv/opencsv/jars/opencsv-2.3.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.fasterxml.jackson.core/jackson-core/jars/jackson-core-2.1.3.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.http-client/google-http-client/jars/google-http-client-1.18.0-rc.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.http-client/google-http-client-jackson2/jars/google-http-client-jackson2-1.18.0-rc.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.cenqua.clover/clover/jars/clover-3.3.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.apis/google-api-services-oauth2/jars/google-api-services-oauth2-v2-rev60-1.17.0-rc.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.oauth-client/google-oauth-client/jars/google-oauth-client-1.17.0-rc.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.api-client/google-api-client/jars/google-api-client-1.17.0-rc.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.apis/google-api-services-youtube/jars/google-api-services-youtube-v3-rev92-1.17.0-rc.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/dom4j/dom4j/jars/dom4j-1.6.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/stax/stax-api/jars/stax-api-1.0.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.xmlbeans/xmlbeans/jars/xmlbeans-2.3.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.poi/poi-ooxml-schemas/jars/poi-ooxml-schemas-3.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.poi/poi-ooxml/jars/poi-ooxml-3.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.imgscalr/imgscalr-lib/jars/imgscalr-lib-4.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.guava/guava/bundles/guava-14.0.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.mail/mail/jars/mail-1.4.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.mortbay.jetty/jetty-util/jars/jetty-util-6.1.26.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.mortbay.jetty/jetty/jars/jetty-6.1.26.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.oauth-client/google-oauth-client-java6/jars/google-oauth-client-java6-1.11.0-beta.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.oauth-client/google-oauth-client-jetty/jars/google-oauth-client-jetty-1.11.0-beta.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.gdata/core/jars/core-1.47.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/bitwalker/UserAgentUtils/jars/UserAgentUtils-1.8.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/uk.ac.shef.wit/simmetrics/jars/simmetrics-1.6.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/uk.org.catnip/eddie/jars/eddie-0.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.restfb/restfb/jars/restfb-1.6.12.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.sanselan/sanselan/bundles/sanselan-0.97-incubator.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jsoup/jsoup/jars/jsoup-1.6.3.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.poi/poi/jars/poi-3.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/joda-time/joda-time/jars/joda-time-2.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.ldap/spring-ldap-core/jars/spring-ldap-core-1.3.2.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/nl.quince.platinum/trakaclient/jars/trakaclient-1.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.glassfish.ha/ha-api/jars/ha-api-3.1.8.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.glassfish.external/management-api/jars/management-api-3.0.0-b012.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.glassfish.gmbal/gmbal-api-only/jars/gmbal-api-only-3.1.0-b001.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.sun.istack/istack-commons-runtime/jars/istack-commons-runtime-2.6.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/relaxngDatatype/relaxngDatatype/jars/relaxngDatatype-20020414.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.sun.xml.txw2/txw2/jars/txw2-20110809.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.sun.xml.ws/policy/jars/policy-2.3.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.codehaus.woodstox/stax2-api/jars/stax2-api-3.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.xml.bind/jaxb-api/jars/jaxb-api-2.2.6.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.xml.ws/jaxws-api/jars/jaxws-api-2.2.8.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/backport-util-concurrent/backport-util-concurrent/jars/backport-util-concurrent-3.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.mnode.ical4j/ical4j/jars/ical4j-1.0.4.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jasig.cas.client/cas-client-core/jars/cas-client-core-3.2.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/mysql/mysql-connector-java/jars/mysql-connector-java-5.1.24.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.liquibase/liquibase-core/jars/liquibase-core-2.0.5.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/net.sf.ehcache/ehcache-core/jars/ehcache-core-2.4.8.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.hibernate/hibernate-ehcache/jars/hibernate-ehcache-3.6.10.Final.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.hibernate/hibernate-entitymanager/jars/hibernate-entitymanager-3.6.10.Final.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.hibernate/hibernate-validator/jars/hibernate-validator-4.1.0.Final.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.validation/validation-api/jars/validation-api-1.0.0.GA.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-simple/jars/grails-datastore-simple-3.1.1.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/antlr/antlr/jars/antlr-2.7.7.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework/spring-orm/jars/spring-orm-3.2.8.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/jars/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.hibernate/hibernate-commons-annotations/jars/hibernate-commons-annotations-3.2.0.Final.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.hibernate/hibernate-core/jars/hibernate-core-3.6.10.Final.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm-plugin-support/jars/grails-datastore-gorm-plugin-support-3.1.1.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm-hibernate-core/jars/grails-datastore-gorm-hibernate-core-3.1.1.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm-hibernate/jars/grails-datastore-gorm-hibernate-3.1.1.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-gorm/jars/grails-datastore-gorm-3.1.1.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.javassist/javassist/bundles/javassist-3.17.1-GA.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.grails/grails-datastore-core/jars/grails-datastore-core-3.1.1.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.spockframework/spock-grails-support/jars/spock-grails-support-0.7-groovy-2.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/junit/junit-dep/jars/junit-dep-4.10.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.eclipse.jdt.core.compiler/ecj/jars/ecj-3.7.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat.embed/tomcat-embed-websocket/jars/tomcat-embed-websocket-7.0.53.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat.embed/tomcat-embed-logging-log4j/jars/tomcat-embed-logging-log4j-7.0.53.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat.embed/tomcat-embed-el/jars/tomcat-embed-el-7.0.53.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat.embed/tomcat-embed-jasper/jars/tomcat-embed-jasper-7.0.53.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat/tomcat-catalina-ant/jars/tomcat-catalina-ant-7.0.53.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.tomcat.embed/tomcat-embed-core/jars/tomcat-embed-core-7.0.53.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="grails-2.4.2" level="application" />
-    <orderEntry type="module" module-name="restapidoc-grailsPlugins" />
   </component>
 </module>
-

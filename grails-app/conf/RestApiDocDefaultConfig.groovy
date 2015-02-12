@@ -68,6 +68,8 @@ grails {
             ]
 
             packageToScan = null
+
+            layout = "main"
         }
     }
 }

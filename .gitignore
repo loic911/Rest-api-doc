@@ -2,3 +2,5 @@
 *.iml
 target/
 out/
+grails-rest-api-doc-*.zip
+grails-rest-api-doc-*.zip.sha1
