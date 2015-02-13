@@ -10,10 +10,11 @@ import org.restapidoc.utils.MappingRules
 
 
 class RestApiDocController {
-
     def grailsApplication
-
+    
     def index() {
+    	def layout = grailsApplication.mergedConfig.grails.plugins.restapidoc.layout
+    	[layout: layout]
     }
 
     def api() {

@@ -1,0 +1,40 @@
+<table class="table table-condensed table-striped table-bordered">
+    <tr><th style="width:15%;">Name</th><td><code>{{name}}</code></td></tr>
+    {{#if description}}
+    <tr><th>Description</th><td>{{description}}</td></tr>
+    {{/if}}
+    {{#if fields}}
+    <tr><th colspan=2>Fields</th></tr>
+    {{#each fields}}
+    <tr><td><code>{{name}}</code></td><td>{{description}}</td></tr>
+    <tr><td></td><td>Type: {{type}}</td></tr>
+    <tr><td></td><td>Multiple: {{multiple}}</td></tr>
+    {{#if useForCreation}}
+    <tr>
+        <td></td>
+        <td><span class="label label-info">Use for creation</span></td>
+    </tr>
+    {{#if mandatory}}
+    <tr>
+        <td></td>
+        <td><span class="label label-warning">Mandatory</span></td>
+    </tr>
+    {{else}}
+    <tr>
+        <td></td>
+        <td><span class="label label-warning">Default: {{defaultValue}}</span></td>
+    </tr>
+    {{/if}}
+    {{#if presentInResponse}}
+    {{else}}
+    <tr>
+        <td></td>
+        <td><span class="label label-inverse">Not in response!</span></td>
+    </tr>
+    {{/if}}
+
+    {{/if}}
+
+    {{/each}}
+    {{/if}}
+</table>
