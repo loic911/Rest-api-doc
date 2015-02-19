@@ -87,22 +87,19 @@ function fetchdoc(jsondocurl) {
         contentType: "application/json; charset=utf-8",
         success : function(data) {
             model = data;
-            // var main = Handlebars.compile($("#main").html());
             var main = Handlebars.templates['main'];
             var mainHTML = main(data);
             $("#maindiv").html(mainHTML);
             $("#maindiv").show();
 
-            // var apis = Handlebars.compile($("#apis").html());
             var apis = Handlebars.templates['apis'];
             var apisHTML = apis(data);
             $("#apidiv").html(apisHTML);
             $("#apidiv").show();
 
-            $("#apidiv a").each(function() {
+            $("#apidiv ul li a").each(function() {
                 $(this).click(function() {
                     var api = jlinq.from(data.apis).equals("jsondocId", this.id).first();
-                    // var methods = Handlebars.compile($("#methods").html());
                     var methods = Handlebars.templates['methods'];
                     var methodsHTML = methods(api);
                     $("#content").html(methodsHTML);
@@ -111,10 +108,9 @@ function fetchdoc(jsondocurl) {
                     $("#apiDescription").text(api.description);
                     $("#testContent").hide();
 
-                    $('#content a[rel="method"]').each(function() {
+                    $('#content a').each(function() {
                         $(this).click(function() {
                             var method = jlinq.from(api.methods).equals("jsondocId", this.id).first();
-                            // var test = Handlebars.compile($("#test").html());
                             var test = Handlebars.templates['test'];
                             var testHTML = test(method);
                             $("#testContent").html(testHTML);
@@ -182,10 +178,9 @@ function fetchdoc(jsondocurl) {
                     });
                 });
             });
-            var allLink = $("#apidiv").find("ul.nav").find("a");
-            var lastLink = allLink[allLink.length-1];
-            lastLink.click();
-            // var objects = Handlebars.compile($("#objects").html());
+            var allLink = $("#apidiv").find("ul.list-group").find("a");
+            var firstLink = allLink[0];
+            firstLink.click();
             var objects = Handlebars.templates['objects'];
             var objectsHTML = objects(data);
             $("#objectdiv").html(objectsHTML);
@@ -194,7 +189,6 @@ function fetchdoc(jsondocurl) {
             $("#objectdiv a").each(function() {
                 $(this).click(function() {
                     var o = jlinq.from(data.objects).equals("jsondocId", this.id).first();
-                    // var object = Handlebars.compile($("#object").html());
                     var object = Handlebars.templates['object'];
                     var objectHTML = object(o);
                     $("#content").html(objectHTML);
@@ -210,8 +204,8 @@ function fetchdoc(jsondocurl) {
         }
     });
 }
-$(document).ready(function() {
 
+$(document).ready(function() {
     var parseQueryString = function() {
         var vars = [], hash;
         var q = document.URL.split('?')[1];

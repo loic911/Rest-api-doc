@@ -1,6 +1,10 @@
-<ul class="nav nav-list">
-	<li class="nav-header">APIs</li>
-	{{#apis}}
-		<li><a href="#" id="{{jsondocId}}" rel="api">{{name}}</a></li>
-	{{/apis}}
-</ul>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">APIs</h3>
+    </div>
+    <ul class="list-group">
+        {{#apis}}
+            <li class="list-group-item"><a href="#" id="{{jsondocId}}" rel="api">{{name}}</a></li>
+        {{/apis}}
+    </ul>
+</div>
