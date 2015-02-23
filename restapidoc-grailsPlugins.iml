@@ -4,8 +4,8 @@
     <facet type="web" name="GrailsWeb">
       <configuration>
         <webroots>
-          <root url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/plugin-config-0.2.0/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.14/web-app" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -27,11 +27,11 @@
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/release-3.0.1/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/release-3.0.1/src/groovy" isTestSource="false" />
     </content>
-    <content url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8">
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/src/java" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/src/groovy" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/grails-app/i18n" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/grails-app/taglib" isTestSource="false" />
+    <content url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.14">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.14/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.14/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.14/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.14/grails-app/taglib" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/rest-client-builder-1.0.3">
       <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/rest-client-builder-1.0.3/src/groovy" isTestSource="false" />

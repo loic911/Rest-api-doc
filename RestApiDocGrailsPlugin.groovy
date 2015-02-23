@@ -5,17 +5,12 @@ class RestApiDocGrailsPlugin {
     def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-        "grails-app/views/error.gsp",
-        "grails-app/views/index.gsp",
         "grails-app/domain/org/restapidoc/test/TestObject.groovy",
         "grails-app/controllers/org/restapidoc/test/TestController.groovy",
         "grails-app/controllers/org/restapidoc/test/AnotherTestController.groovy",
-        "web-app/css/errors.css",
-        "web-app/css/main.css",
-        "web-app/css/mobile.css",
         "web-app/images/**",
         "web-app/js/application.js",
-        "web-app/js/jsondoc/templates/**"
+        "web-app/js/restapidoc/templates/**"
     ]
 
     // TODO Fill in these fields

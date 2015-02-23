@@ -10,14 +10,15 @@ function checkURLExistence() {
     }
 }
 
-function updateMethodBodyForm() {
-    var methodBodyType = $("#bodyTypeSelect").val();
-    if (methodBodyType == "String body"){
-        $("#methodMultipartBody").hide();
-        $("#methodStringBody").show();
-    } else if (methodBodyType == "Multipart body"){
-        $("#methodStringBody").hide();
-        $("#methodMultipartBody").show();
+function selectPostParametersMethodBody() {
+    if ($("#bodyTypeSelect > input[name=inputMultipartFiles]").length > 0) {
+        $("#bodyTypeSelect > input").replaceWith('<input id="inputJson" type="text" class="form-control" aria-label="POST body parameters">');
+    }
+}
+
+function selectMultipartMethodBody() {
+    if ($("#bodyTypeSelect > input[name=inputMultipartFiles]").length == 0) {
+        $("#bodyTypeSelect > input").replaceWith('<input type="file" name="inputMultipartFiles" multiple="true" class="form-control">');
     }
 }
 
@@ -146,10 +147,16 @@ function fetchdoc(jsondocurl) {
                                 var requestData;
                                 var cType;
                                 var isProcessData;
-                                if ($("#bodyTypeSelect").val() == "Multipart body"){
+                                var filesInput = $("#bodyTypeSelect > input[name=inputMultipartFiles]");
+                                if (filesInput.length > 0) {
                                     cType = false;
                                     isProcessData = false;
-                                    requestData = new FormData(document.forms.namedItem("multipartFilesForm"));
+                                    requestData = new FormData();
+                                    var files = $("#bodyTypeSelect > input[name=inputMultipartFiles]")[0].files;
+
+                                    for(var i = 0; i < files.length; i++) {
+                                        requestData.append('file', files[i]);
+                                    }
                                 } else {
                                     cType = $("#consumes input:checked").val();
                                     isProcessData = true;
@@ -226,4 +233,13 @@ $(document).ready(function() {
         $('#getDocButton').click();
     }
 
+    $(document).on("click", "#selectStringParameters", function(event) {
+        event.preventDefault();
+        selectPostParametersMethodBody();
+    });
+
+    $(document).on("click", "#selectMultipart", function(event) {
+        event.preventDefault();
+        selectMultipartMethodBody();
+    });
 });

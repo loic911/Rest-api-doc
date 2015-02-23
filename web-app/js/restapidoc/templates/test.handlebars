@@ -80,27 +80,15 @@
         <div class="col-sm-12 col-md-12" style="margin-left:0px">
             <div id="bodyobject" class="playground-spacer">
                 <h4>Body object</h4>
-                <div class="form-group">
-                    <select id="bodyTypeSelect" class="form-control" value="String body" onchange="updateMethodBodyForm();">
-                        <option>String body</option>
-                        <option>Multipart body</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <div id="methodStringBody">
-                        <div class="input-group">
-                            <span class="input-group-addon" aria-label="JSON body">String body</span>
-                            <input id="inputJson" type="text" class="form-control" aria-label="Text input JSON body">
-                        </div>
+                <div id="bodyTypeSelect" class="input-group">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Type<span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a id="selectStringParameters" href="#">String parameters</a></li>
+                            <li><a id="selectMultipart" href="#">Multipart</a></li>
+                        </ul>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div id="methodMultipartBody" style="display:none;">
-                        <form name="multipartFilesForm" enctype="multipart/form-data">
-                            <span class="input-group-addon" aria-label="Files">Files</span>
-                            <input type="file" name="inputMultipartFiles" onchange="chooseFileUpdate(this.files);" multiple="true" class="form-control">
-                        </form>
-                    </div>
+                    <input id="inputJson" type="text" class="form-control" aria-label="POST body parameters">
                 </div>
             </div>
         </div>
