@@ -68,7 +68,8 @@ Stylesheet `grails-app/assets/javascripts/application.css`:
 ```
 
 ###Edit your Sitemesh layout
-`grails-app/views/layouts/<layout>.gsp`:
+`grails-app/views/layouts/<layout>.gsp`
+
 ```gsp
 <!DOCTYPE html>
     <head>
@@ -84,9 +85,18 @@ Stylesheet `grails-app/assets/javascripts/application.css`:
 </html>
 ```
 
+####Supporting Internet Explorer
+If you wish to support Internet Explorer lower than version 9, then you need to add the following just above `<g:layoutHead>`:
+```gsp
+<!--[if lt IE 9]>
+    <asset:javascript src="html5shiv/html5shiv.js"/>
+<![endif]-->
+```
+
 ##Including the resources when using the Resources plugin
 ###Edit your Sitemesh layout
-`grails-app/views/layouts/<layout>.gsp`:
+`grails-app/views/layouts/<layout>.gsp`
+
 ```gsp
 <!DOCTYPE html>
     <html lang="en">
@@ -103,6 +113,13 @@ Stylesheet `grails-app/assets/javascripts/application.css`:
         <r:layoutResources/>
     </body>
 </html>
+```
+
+####Supporting Internet Explorer
+If you wish to support Internet Explorer lower than version 9, then your `<r:requireModules>` line should look like this:
+
+```gsp
+<r:require modules="restapidoc_html5shiv, bootstrap, restapidoc"/>
 ```
 
 #Logging
