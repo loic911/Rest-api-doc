@@ -51,5 +51,8 @@ grails.project.dependency.resolution = {
               ":rest-client-builder:1.0.3") {
             export = false
         }
+
+        runtime ":jquery:1.11.1"
+        runtime ':twitter-bootstrap:3.3.2.1'
     }
 }

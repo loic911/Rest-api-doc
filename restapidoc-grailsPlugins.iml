@@ -6,6 +6,8 @@
         <webroots>
           <root url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/plugin-config-0.2.0/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/resources-1.2.14/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/twitter-bootstrap-3.3.2.1/web-app" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -19,6 +21,11 @@
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
+    <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1/grails-app/taglib" isTestSource="false" />
+    </content>
     <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/plugin-config-0.2.0">
       <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/plugin-config-0.2.0/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/plugin-config-0.2.0/src/groovy" isTestSource="false" />
@@ -39,6 +46,10 @@
     <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/tomcat-7.0.42">
       <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/tomcat-7.0.42/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/tomcat-7.0.42/src/groovy" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/twitter-bootstrap-3.3.2.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/twitter-bootstrap-3.3.2.1/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/twitter-bootstrap-3.3.2.1/grails-app/taglib" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
