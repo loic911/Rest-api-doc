@@ -4,8 +4,10 @@
     <facet type="web" name="GrailsWeb">
       <configuration>
         <webroots>
-          <root url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/web-app" relative="/" />
-          <root url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/plugin-config-0.2.0/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/plugin-config-0.2.0/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/resources-1.2.14/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/twitter-bootstrap-3.3.2.1/web-app" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -19,30 +21,39 @@
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/plugin-config-0.2.0">
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/plugin-config-0.2.0/src/java" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/plugin-config-0.2.0/src/groovy" isTestSource="false" />
+    <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/jquery-1.11.1/grails-app/taglib" isTestSource="false" />
     </content>
-    <content url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/release-3.0.1">
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/release-3.0.1/src/java" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/release-3.0.1/src/groovy" isTestSource="false" />
+    <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/plugin-config-0.2.0">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/plugin-config-0.2.0/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/plugin-config-0.2.0/src/groovy" isTestSource="false" />
     </content>
-    <content url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8">
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/src/java" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/src/groovy" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/grails-app/i18n" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/resources-1.2.8/grails-app/taglib" isTestSource="false" />
+    <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/release-3.0.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/release-3.0.1/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/release-3.0.1/src/groovy" isTestSource="false" />
     </content>
-    <content url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/rest-client-builder-1.0.3">
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/rest-client-builder-1.0.3/src/groovy" isTestSource="false" />
+    <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/resources-1.2.14">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/resources-1.2.14/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/resources-1.2.14/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/resources-1.2.14/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/resources-1.2.14/grails-app/taglib" isTestSource="false" />
     </content>
-    <content url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/tomcat-7.0.42">
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/tomcat-7.0.42/src/java" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/2.3.11/projects/RestApiDoc/plugins/tomcat-7.0.42/src/groovy" isTestSource="false" />
+    <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/rest-client-builder-1.0.3">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/rest-client-builder-1.0.3/src/groovy" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/tomcat-7.0.42">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/tomcat-7.0.42/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/tomcat-7.0.42/src/groovy" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/twitter-bootstrap-3.3.2.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/twitter-bootstrap-3.3.2.1/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.4.4/projects/RestApiDoc/plugins/twitter-bootstrap-3.3.2.1/grails-app/taglib" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="grails-2.3.11" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.4.4" level="application" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (restapidoc-grailsPlugins)">
         <CLASSES>
@@ -74,6 +85,7 @@
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.42/tomcat-embed-logging-log4j-7.0.42.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.42/tomcat-embed-jasper-7.0.42.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina-ant/7.0.42/tomcat-catalina-ant-7.0.42.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib-nodep/2.2.2/cglib-nodep-2.2.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -45,11 +45,14 @@ grails.project.dependency.resolution = {
     plugins {
         build ":tomcat:7.0.42"
         compile ":plugin-config:0.2.0"
-        runtime(':resources:1.2.8') { export = false }
+        runtime(':resources:1.2.14') { export = false }
 
         build(":release:3.0.1",
               ":rest-client-builder:1.0.3") {
             export = false
         }
+
+        runtime ":jquery:1.11.1"
+        runtime ':twitter-bootstrap:3.3.2.1'
     }
 }
