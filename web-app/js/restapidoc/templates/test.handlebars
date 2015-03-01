@@ -1,0 +1,125 @@
+<blockquote>
+    <p style="text-transform: uppercase;">Playground</p>
+    <small>{{path}}</small>
+</blockquote>
+
+<div class="row">
+    {{#if headers}}
+        <div class="col-sm-12 col-md-12">
+            <div id="headers">
+                <h4>Headers</h4>
+                {{#headers}}
+                    <div class="input-group">
+                        <span class="input-group-addon" aria-label="Header">{{name}}</span>
+                        <input type="text" class="form-control" name="{{name}}" placeholder="{{name}}" aria-label="Text input for header">
+                    </div>
+                {{/headers}}
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if produces}}
+        <div class="col-sm-6 col-md-6" style="margin-left:0px">
+            <div id="produces" class="playground-spacer">
+                <h4>Accept</h4>
+                {{#produces}}
+                    <div class="input-group">
+                        <input type="radio" aria-label="Radio select for accepted request format" name="produces" value="{{this}}">
+                        <label style="margin-left: 10px">{{this}}</label>
+                    </div>
+                {{/produces}}
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if bodyobject}}
+        {{#if consumes}}
+            <div class="col-sm-6 col-md-6" style="margin-left:0px">
+                <div id="consumes" class="playground-spacer">
+                    <h4>Content type</h4>
+                    {{#consumes}}
+                        <div class="input-group">
+                            <input type="radio" aria-label="Radio select for consumes format" name="consumes" value="{{this}}">
+                            <label style="margin-left: 10px">{{this}}</label>
+                        </div>
+                    {{/consumes}}
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
+
+    {{#if pathparameters}}
+        <div class="col-sm-12 col-md-12" style="margin-left:0px">
+            <div id="pathparameters" class="playground-spacer">
+                <h4>Path parameters</h4>
+                {{#pathparameters}}
+                    <div class="input-group" style="margin-bottom: 5px">
+                        <span class="input-group-addon" aria-label="Path parameter">{{name}}</span>
+                        <input type="text" class="form-control" name="{{name}}" placeholder="{{name}}" aria-label="Text input for path parameter">
+                    </div>
+                {{/pathparameters}}
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if queryparameters}}
+        <div class="col-sm-12 col-md-12" style="margin-left:0px">
+            <div id="queryparameters" class="playground-spacer">
+                <h4>Query parameters</h4>
+                {{#queryparameters}}
+                    <div class="input-group" style="margin-bottom: 5px">
+                        <span class="input-group-addon" aria-label="Query parameter">{{name}}</span>
+                        <input type="text" class="form-control" name="{{name}}" placeholder="{{name}}" aria-label="Text input for query parameter">
+                    </div>
+                {{/queryparameters}}
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if bodyobject}}
+        <div class="col-sm-12 col-md-12" style="margin-left:0px">
+            <div id="bodyobject" class="playground-spacer">
+                <h4>Body object</h4>
+                <div id="bodyTypeSelect" class="input-group">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Type<span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a id="selectStringParameters" href="#">String parameters</a></li>
+                            <li><a id="selectMultipart" href="#">Multipart</a></li>
+                        </ul>
+                    </div>
+                    <input id="inputJson" type="text" class="form-control" aria-label="POST body parameters">
+                </div>
+            </div>
+        </div>
+    {{/if}}
+
+    <div class="col-sm-12 col-md-12 playground-spacer" style="margin-left:0px">
+        <div class="form-actions">
+            <button class="btn btn-primary" id="testButton" data-loading-text="Loading...">Submit</button>
+        </div>
+    </div>
+</div>
+
+<div role="tabpanel" id="resInfo" class="playground-spacer" style="display:none;">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#response-text" aria-controls="response-text" data-toggle="tab">Response text</a></li>
+        <li role="presentation"><a href="#response-info" aria-controls="resposne-info" data-toggle="tab">Response info</a></li>
+        <li role="presentation"><a href="#request-info" aria-controls="request-info" data-toggle="tab">Request info</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="response-text">
+            <pre id="response" class="prettyprint"></pre>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="response-info">
+            <p class="nav-header" style="padding:0px">Response code</p>
+            <pre id="responseStatus" class="prettyprint"></pre>
+            <p class="nav-header" style="padding:0px">Response headers</p>
+            <pre id="responseHeaders" class="prettyprint"></pre>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="request-info">
+            <p class="nav-header" style="padding:0px">Request URL</p>
+            <pre id="requestURL" class="prettyprint"></pre>
+        </div>
+    </div>
+</div>

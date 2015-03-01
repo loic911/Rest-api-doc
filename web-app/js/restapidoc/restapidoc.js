@@ -10,14 +10,15 @@ function checkURLExistence() {
     }
 }
 
-function updateMethodBodyForm() {
-    var methodBodyType = $("#bodyTypeSelect").val();
-    if (methodBodyType == "String body"){
-        $("#methodMultipartBody").hide();
-        $("#methodStringBody").show();
-    } else if (methodBodyType == "Multipart body"){
-        $("#methodStringBody").hide();
-        $("#methodMultipartBody").show();
+function selectPostParametersMethodBody() {
+    if ($("#bodyTypeSelect > input[name=inputMultipartFiles]").length > 0) {
+        $("#bodyTypeSelect > input").replaceWith('<input id="inputJson" type="text" class="form-control" aria-label="POST body parameters">');
+    }
+}
+
+function selectMultipartMethodBody() {
+    if ($("#bodyTypeSelect > input[name=inputMultipartFiles]").length == 0) {
+        $("#bodyTypeSelect > input").replaceWith('<input type="file" name="inputMultipartFiles" multiple="true" class="form-control">');
     }
 }
 
@@ -87,22 +88,19 @@ function fetchdoc(jsondocurl) {
         contentType: "application/json; charset=utf-8",
         success : function(data) {
             model = data;
-            // var main = Handlebars.compile($("#main").html());
             var main = Handlebars.templates['main'];
             var mainHTML = main(data);
             $("#maindiv").html(mainHTML);
             $("#maindiv").show();
 
-            // var apis = Handlebars.compile($("#apis").html());
             var apis = Handlebars.templates['apis'];
             var apisHTML = apis(data);
             $("#apidiv").html(apisHTML);
             $("#apidiv").show();
 
-            $("#apidiv a").each(function() {
+            $("#apidiv ul li a").each(function() {
                 $(this).click(function() {
                     var api = jlinq.from(data.apis).equals("jsondocId", this.id).first();
-                    // var methods = Handlebars.compile($("#methods").html());
                     var methods = Handlebars.templates['methods'];
                     var methodsHTML = methods(api);
                     $("#content").html(methodsHTML);
@@ -111,10 +109,9 @@ function fetchdoc(jsondocurl) {
                     $("#apiDescription").text(api.description);
                     $("#testContent").hide();
 
-                    $('#content a[rel="method"]').each(function() {
+                    $('#content a').each(function() {
                         $(this).click(function() {
                             var method = jlinq.from(api.methods).equals("jsondocId", this.id).first();
-                            // var test = Handlebars.compile($("#test").html());
                             var test = Handlebars.templates['test'];
                             var testHTML = test(method);
                             $("#testContent").html(testHTML);
@@ -150,10 +147,16 @@ function fetchdoc(jsondocurl) {
                                 var requestData;
                                 var cType;
                                 var isProcessData;
-                                if ($("#bodyTypeSelect").val() == "Multipart body"){
+                                var filesInput = $("#bodyTypeSelect > input[name=inputMultipartFiles]");
+                                if (filesInput.length > 0) {
                                     cType = false;
                                     isProcessData = false;
-                                    requestData = new FormData(document.forms.namedItem("multipartFilesForm"));
+                                    requestData = new FormData();
+                                    var files = $("#bodyTypeSelect > input[name=inputMultipartFiles]")[0].files;
+
+                                    for(var i = 0; i < files.length; i++) {
+                                        requestData.append('file', files[i]);
+                                    }
                                 } else {
                                     cType = $("#consumes input:checked").val();
                                     isProcessData = true;
@@ -182,10 +185,9 @@ function fetchdoc(jsondocurl) {
                     });
                 });
             });
-            var allLink = $("#apidiv").find("ul.nav").find("a");
-            var lastLink = allLink[allLink.length-1];
-            lastLink.click();
-            // var objects = Handlebars.compile($("#objects").html());
+            var allLink = $("#apidiv").find("ul.list-group").find("a");
+            var firstLink = allLink[0];
+            firstLink.click();
             var objects = Handlebars.templates['objects'];
             var objectsHTML = objects(data);
             $("#objectdiv").html(objectsHTML);
@@ -194,7 +196,6 @@ function fetchdoc(jsondocurl) {
             $("#objectdiv a").each(function() {
                 $(this).click(function() {
                     var o = jlinq.from(data.objects).equals("jsondocId", this.id).first();
-                    // var object = Handlebars.compile($("#object").html());
                     var object = Handlebars.templates['object'];
                     var objectHTML = object(o);
                     $("#content").html(objectHTML);
@@ -210,8 +211,8 @@ function fetchdoc(jsondocurl) {
         }
     });
 }
-$(document).ready(function() {
 
+$(document).ready(function() {
     var parseQueryString = function() {
         var vars = [], hash;
         var q = document.URL.split('?')[1];
@@ -232,4 +233,13 @@ $(document).ready(function() {
         $('#getDocButton').click();
     }
 
+    $(document).on("click", "#selectStringParameters", function(event) {
+        event.preventDefault();
+        selectPostParametersMethodBody();
+    });
+
+    $(document).on("click", "#selectMultipart", function(event) {
+        event.preventDefault();
+        selectMultipartMethodBody();
+    });
 });
