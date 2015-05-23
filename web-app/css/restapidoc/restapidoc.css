@@ -7,6 +7,10 @@
     padding: 9px 0;
 }
 
+.navbar-form .form-control {
+    width: 50em;
+}
+
 .GET {
     padding-top : 3px;
     background-color: #468847;
