@@ -48,27 +48,23 @@ class BuildPathMap extends AnsiConsoleUrlMappingsRenderer {
             final controllerUrlMappings = mappingsByController.get(controller)
             for (UrlMapping urlMapping in controllerUrlMappings) {
                 def urlPattern = establishUrlPattern(urlMapping, isAnsiEnabled, longestMapping)
-
-                if (urlMapping?.actionName) {
-                    // urlMapping can be either a string or a closure that returns the result
-                    if (urlMapping?.actionName instanceof String) {
-                        rules.addRule(controller.toString(), urlMapping.actionName.toString(), cleanString(urlPattern), urlMapping.httpMethod, grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultFormat)
-                    } else {
-                        urlMapping?.actionName.each { actName ->
-                            urlPattern = urlPattern.replace("\${", "{") //replace ${format} with {format}
-                            rules.addRule(controller.toString(), actName.value, cleanString(urlPattern), actName.key, grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultFormat)
-                        }
+                // urlMapping can be either a string or a closure that returns the map result
+                if (urlMapping?.actionName instanceof Map) {
+                    urlMapping?.actionName.each { actName ->
+                        urlPattern = urlPattern.replace("\${", "{") //replace ${format} with {format}
+                        rules.addRule(controller.toString(), actName.value, cleanString(urlPattern), actName.key, grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultFormat)
                     }
                 }
+                else {
+                    String actionName = urlMapping.actionName?.toString() ?: ""
+                    rules.addRule(controller.toString(), actionName, cleanString(urlPattern), urlMapping.httpMethod, grailsApplication.mergedConfig.grails.plugins.restapidoc.defaultFormat)
+                }
             }
-
         }
-
         return rules
     }
     //string from url mapping are dirty (escape char,...)
     public static String cleanString(String dirtyString) {
-
         Pattern escapeCodePattern = Pattern.compile(
                 "\u001B"        // escape code
                         + "\\["
@@ -77,7 +73,6 @@ class BuildPathMap extends AnsiConsoleUrlMappingsRenderer {
                         + "[@-~]"
                         + "|\\\$" // Url mapping returns parameters formatted like this : ${parameter}.
         );
-        escapeCodePattern.matcher(dirtyString).replaceAll("");
-
+        escapeCodePattern.matcher(dirtyString).replaceAll("").trim();
     }
 }
