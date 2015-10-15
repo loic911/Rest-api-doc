@@ -149,26 +149,55 @@ public class JSONDocUtilsLight extends JSONDocUtils {
     }
 
     public RestApiMethodDoc extractMethodDocs(Set<Class<?>> objectClasses, Method method, Class<?> controller, MappingRules rules, String extension) {
+        //Controller name
+        String controllerName = controller.simpleName
+        if (controllerName.endsWith(CONTROLLER_SUFFIX)) {
+            controllerName = controllerName.substring(0, controllerName.size() - CONTROLLER_SUFFIX.size())
+        }
 
-        //Retrieve the path/verb to go to this method
-        MappingRulesEntry rule = rules.getRule(controller.simpleName, method.name)
-        String verb = method.getAnnotation(RestApiMethod.class).verb().name()
+        //URL Params
+        def urlParams = []
+        def queryParameters = []
+        if (method.isAnnotationPresent(RestApiParams.class)) {
+            urlParams = RestApiParamDoc.buildFromAnnotation(method.getAnnotation(RestApiParams.class), RestApiParamType.PATH,method)
+            queryParameters = RestApiParamDoc.buildFromAnnotation(method.getAnnotation(RestApiParams.class), RestApiParamType.QUERY,method)
+        }
+
+        //Retrieve the path to go to this method
+        MappingRulesEntry rule = rules.matchRule(controllerName, method.name, urlParams, extension)
         String path
 
+        //Retrieve the verb to go to this method
         def annotation = method.getAnnotation(RestApiMethod.class)
+        String verb = method.getAnnotation(RestApiMethod.class).verb().name()
+        println  "annotation.verb()=${annotation.verb()}"
+
+        if (annotation.verb() != RestApiVerb.NULL) {
+            //verb is defined in the annotation
+            verb = method.getAnnotation(RestApiMethod.class).verb().name().toUpperCase()
+        }
+        else if (rule) {
+            //verb is defined in the urlmapping
+            verb = rule.verb
+        }
+        else {
+            verb = "GET"
+            //if no explicit url mapping rules, take dynamic rule
+            VERB_PER_METHOD_PREFIX.each {
+                if (method.name.startsWith(it.key)) {
+                    verb = it.value
+                }
+            }
+        }
+
         if (!annotation.path().equals("Undefined")) {
             //path is defined in the annotation
             path = method.getAnnotation(RestApiMethod.class).path()
         } else if (rule) {
             //path is defined in the urlmapping
-            path = rule.path
-
+            path = fillPathAction(rule.path, method.name)
         } else {
             //nothing is defined
-            String controllerName = controller.simpleName
-            if (controllerName.endsWith(CONTROLLER_SUFFIX)) {
-                controllerName = controllerName.substring(0, controllerName.size() - CONTROLLER_SUFFIX.size())
-            }
             controllerName = splitCamelToBlank(Introspector.decapitalize(controllerName))
 
             String actionWithPathParam = "/" + method.name
@@ -184,41 +213,13 @@ public class JSONDocUtilsLight extends JSONDocUtils {
 
             path = "/" + controllerName + actionWithPathParam + format
         }
-
         path = extension ? path.replace(DEFAULT_FORMAT_NAME, extension) : path
-
-        println  "annotation.verb()=${annotation.verb()}"
-
-        if (annotation.verb() != RestApiVerb.NULL) {
-            //verb is defined in the annotation
-            verb = method.getAnnotation(RestApiMethod.class).verb().name().toUpperCase()
-        } else if (rule) {
-            //verb is defined in the urlmapping
-            verb = rule.verb
-
-        } else {
-            verb = "GET"
-            //if no explicit url mapping rules, take dynamic rule
-            VERB_PER_METHOD_PREFIX.each {
-                if (method.name.startsWith(it.key)) {
-                    verb = it.value
-                }
-            }
-
-        }
 
         RestApiMethodDoc apiMethodDoc = RestApiMethodDoc.buildFromAnnotation(method.getAnnotation(RestApiMethod.class), path, verb, DEFAULT_TYPE);
         apiMethodDoc.methodName = method.name
 
         if (method.isAnnotationPresent(RestApiHeaders.class)) {
             apiMethodDoc.setHeaders(RestApiMethodDoc.buildFromAnnotation(method.getAnnotation(RestApiHeaders.class)));
-        }
-
-        def urlParams = []
-        def queryParameters = []
-        if (method.isAnnotationPresent(RestApiParams.class)) {
-            urlParams = RestApiParamDoc.buildFromAnnotation(method.getAnnotation(RestApiParams.class), RestApiParamType.PATH,method)
-            queryParameters = RestApiParamDoc.buildFromAnnotation(method.getAnnotation(RestApiParams.class), RestApiParamType.QUERY,method)
         }
 
         DEFAULT_PARAMS_QUERY_ALL.each {
@@ -370,5 +371,12 @@ public class JSONDocUtilsLight extends JSONDocUtils {
             return str.substring(0, 1).toUpperCase() + str.substring(1);
         }
         return str
+    }
+
+    static String fillPathAction(String path, String action) {
+        if (path.contains('{action}')) {
+            return path.replaceFirst(/\{action}/, action)
+        }
+        return path
     }
 }
